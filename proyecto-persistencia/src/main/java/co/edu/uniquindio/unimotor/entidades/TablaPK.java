@@ -4,17 +4,17 @@ import java.io.Serializable;
 import java.lang.String;
 
 /**
- * ID class for entity: Table
+ * ID class for entity: Tabla
  *
  */ 
-public class TablePK  implements Serializable {   
+public class TablaPK  implements Serializable {   
    
 	         
 	private String idVehiculo;         
-	private String idCaracteristica;
+	private String idCaracteristicas;
 	private static final long serialVersionUID = 1L;
 
-	public TablePK() {}
+	public TablaPK() {}
 
 	
 
@@ -27,12 +27,12 @@ public class TablePK  implements Serializable {
 	}
 	
 
-	public String getIdCaracteristica() {
-		return this.idCaracteristica;
+	public String getIdCaracteristicas() {
+		return this.idCaracteristicas;
 	}
 
-	public void setIdCaracteristica(String idCaracteristica) {
-		this.idCaracteristica = idCaracteristica;
+	public void setIdCaracteristicas(String idCaracteristicas) {
+		this.idCaracteristicas = idCaracteristicas;
 	}
 	
    
@@ -43,13 +43,13 @@ public class TablePK  implements Serializable {
 		if (o == this) {
 			return true;
 		}
-		if (!(o instanceof TablePK)) {
+		if (!(o instanceof TablaPK)) {
 			return false;
 		}
-		TablePK other = (TablePK) o;
+		TablaPK other = (TablaPK) o;
 		return true
 			&& (getIdVehiculo() == null ? other.getIdVehiculo() == null : getIdVehiculo().equals(other.getIdVehiculo()))
-			&& (getIdCaracteristica() == null ? other.getIdCaracteristica() == null : getIdCaracteristica().equals(other.getIdCaracteristica()));
+			&& (getIdCaracteristicas() == null ? other.getIdCaracteristicas() == null : getIdCaracteristicas().equals(other.getIdCaracteristicas()));
 	}
 	
 	/*	 
@@ -59,7 +59,7 @@ public class TablePK  implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (getIdVehiculo() == null ? 0 : getIdVehiculo().hashCode());
-		result = prime * result + (getIdCaracteristica() == null ? 0 : getIdCaracteristica().hashCode());
+		result = prime * result + (getIdCaracteristicas() == null ? 0 : getIdCaracteristicas().hashCode());
 		return result;
 	}
    

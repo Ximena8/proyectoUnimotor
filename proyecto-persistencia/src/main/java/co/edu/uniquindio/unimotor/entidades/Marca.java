@@ -23,6 +23,7 @@ public class Marca implements Serializable {
 	
 	@OneToMany(mappedBy = "marca")
 	private List<Vehiculo> vehiculo;
+	
 	private static final long serialVersionUID = 1L;
 
 	public Marca() {

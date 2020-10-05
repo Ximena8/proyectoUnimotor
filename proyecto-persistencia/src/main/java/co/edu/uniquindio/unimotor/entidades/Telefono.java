@@ -20,9 +20,10 @@ public class Telefono implements Serializable {
 	@Column(name="id", length = 10)
 	private String id;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "id_persona", nullable = false)
 	private Persona persona;
+	
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -62,6 +63,15 @@ public class Telefono implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
+	
+	public Persona getPersona() {
+		return persona;
+	}
+
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
 
 
 	@Override
@@ -89,6 +99,9 @@ public class Telefono implements Serializable {
 			return false;
 		return true;
 	}
+
+
+	
 	
 	
    

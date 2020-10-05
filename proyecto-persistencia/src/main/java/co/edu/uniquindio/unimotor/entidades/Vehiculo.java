@@ -15,7 +15,7 @@ import javax.persistence.*;
 
 public class Vehiculo implements Serializable {
 
-	   
+   
 	@Id
 	@Column(name="id", length = 10)
 	private String id;
@@ -29,43 +29,36 @@ public class Vehiculo implements Serializable {
 	private String anio;
 	
 	@OneToMany(mappedBy = "vehiculo")
-	private List<Favorito> favortio;
-	
+	private List<Favorito> favorito;
+
 	@OneToMany(mappedBy = "vehiculo")
 	private List<Pregunta> pregunta;
 	
 	@OneToMany(mappedBy = "vehiculo")
-	private List<fotoVehiculo> fotVehiculo;
+	private List<fotoVehiculo> FotoVehiculo;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_persona", nullable = false)
-	private Persona persona;
+	@OneToMany(mappedBy = "vehiculo")
+	private List<Tabla> tabla;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "id_ciudad", nullable = false)
 	private Ciudad ciudad;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "id_marca", nullable = false)
 	private Marca marca;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_tipo_conbustible", nullable = false)
+	@ManyToOne()
+	@JoinColumn(name = "id_tipo_combustible", nullable = false)
 	private TipoCombustible tipoCombustible;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_transmision", nullable = false)
-	private Transmision transmision;
+	@ManyToOne()
+	@JoinColumn(name = "id_persona", nullable = false)
+	private Persona persona;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_tipo_vehiculo", nullable = false)
+	@ManyToOne()
+	@JoinColumn(name = "id_tipo_vehiuclo", nullable = false)
 	private TipoVehiculo tipoVehiculo;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_vehiculo", nullable = false)
-	private Table table;
-	
-	
 	
 	private static final long serialVersionUID = 1L;
 
@@ -119,6 +112,54 @@ public class Vehiculo implements Serializable {
 	public void setAnio(String anio) {
 		this.anio = anio;
 	}
+ 
+	
+	
+
+	public Ciudad getCiudad() {
+		return ciudad;
+	}
+
+
+	public void setCiudad(Ciudad ciudad) {
+		this.ciudad = ciudad;
+	}
+
+
+	
+	
+	public TipoCombustible getTipoCombustible() {
+		return tipoCombustible;
+	}
+
+
+	public void setTipoCombustible(TipoCombustible tipoCombustible) {
+		this.tipoCombustible = tipoCombustible;
+	}
+
+
+	
+	
+	public Persona getPersona() {
+		return persona;
+	}
+
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+
+	
+	
+
+	public TipoVehiculo getTipoVehiculo() {
+		return tipoVehiculo;
+	}
+
+
+	public void setTipoVehiculo(TipoVehiculo tipoVehiculo) {
+		this.tipoVehiculo = tipoVehiculo;
+	}
 
 
 	@Override
@@ -127,6 +168,17 @@ public class Vehiculo implements Serializable {
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
+	}
+
+	
+
+	public Marca getMarca() {
+		return marca;
+	}
+
+
+	public void setMarca(Marca marca) {
+		this.marca = marca;
 	}
 
 
@@ -147,6 +199,9 @@ public class Vehiculo implements Serializable {
 		return true;
 	}
 
+
+	
+	
 	
 	
 }

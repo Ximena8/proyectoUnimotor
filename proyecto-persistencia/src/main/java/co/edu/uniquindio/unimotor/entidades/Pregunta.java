@@ -22,13 +22,14 @@ public class Pregunta implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP )
 	private Date fechaPregunta;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_persona", nullable = false)
+	@ManyToOne()
+	@JoinColumn(name = "id_persona", nullable = false) 
 	private Persona persona;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_vehiculo", nullable = false)
+	@ManyToOne()
+	@JoinColumn(name = "id_vehiculo", nullable = false) 
 	private Vehiculo vehiculo;
+	
 	
 	private static final long serialVersionUID = 1L;
 
@@ -67,6 +68,28 @@ public class Pregunta implements Serializable {
 		this.fechaPregunta = fechaPregunta;
 	}
 
+	
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+
+	
+
+	public Vehiculo getVehiculo() {
+		return vehiculo;
+	}
+
+
+	public void setVehiculo(Vehiculo vehiculo) {
+		this.vehiculo = vehiculo;
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -93,6 +116,11 @@ public class Pregunta implements Serializable {
 			return false;
 		return true;
 	}
-   
+
+
+	
+     
+	
+	
 	
 }

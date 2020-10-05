@@ -14,15 +14,17 @@ import javax.persistence.*;
 
 public class TipoVehiculo implements Serializable {
 
-	   
+   
 	@Id
 	@Column(name="id", length = 10)
 	private String id;
+	
 	@Column(name="nombre", length = 200, nullable = false)
 	private String nombre;
 	
 	@OneToMany(mappedBy = "tipoVehiculo")
 	private List<Vehiculo> vehiculo;
+	
 	private static final long serialVersionUID = 1L;
 
 	public TipoVehiculo() {

@@ -14,7 +14,7 @@ import javax.persistence.*;
 
 public class Ciudad implements Serializable {
 
-	   
+	  
 	@Id
 	@Column(name="id", length = 10)
 	private String id;
@@ -23,9 +23,9 @@ public class Ciudad implements Serializable {
 	
 	@OneToMany(mappedBy = "ciudad")
 	private List<Persona> persona;
-
+	
 	@OneToMany(mappedBy = "ciudad")
-	private List<Vehiculo> vehiculo;
+	private List<Vehiculo> Vehiculo;
 	
 	private static final long serialVersionUID = 1L;
 

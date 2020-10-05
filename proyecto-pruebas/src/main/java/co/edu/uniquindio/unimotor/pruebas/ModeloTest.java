@@ -34,7 +34,7 @@ public class ModeloTest {
 	.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
 	
 	}
-	
+
 	@Test
 	public void test() {
 		

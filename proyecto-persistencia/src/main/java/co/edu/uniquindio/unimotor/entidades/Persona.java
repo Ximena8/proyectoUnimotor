@@ -30,21 +30,21 @@ public class Persona implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Genero genero;
 	
-	@OneToMany(mappedBy = "persona")
-	private List<Favorito> favorito;
+	@ManyToOne()
+	@JoinColumn(name = "id_ciudad", nullable = false)
+	private Ciudad ciudad;
 	
 	@OneToMany(mappedBy = "persona")
 	private List<Telefono> telefono;
 	
 	@OneToMany(mappedBy = "persona")
-	private List<Pregunta> pregunta;
+	private List<Favorito> favorito;
+	
+	@OneToMany(mappedBy = "persona")
+	private List<Pregunta> Pregunta;
 	
 	@OneToMany(mappedBy = "persona")
 	private List<Vehiculo> vehiculo;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_ciudad", nullable = false)
-	private Ciudad ciudad;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -53,6 +53,18 @@ public class Persona implements Serializable {
 	}   
 	
 	
+
+	public Ciudad getCiudad() {
+		return ciudad;
+	}
+
+
+
+	public void setCiudad(Ciudad ciudad) {
+		this.ciudad = ciudad;
+	}
+
+
 
 	public Persona(String id, String nombre, String email, String clave, String direccion) {
 		super();
@@ -117,6 +129,8 @@ public class Persona implements Serializable {
 
 
 
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -143,6 +157,10 @@ public class Persona implements Serializable {
 			return false;
 		return true;
 	}
+
+
+	
+	
 	
 	
    

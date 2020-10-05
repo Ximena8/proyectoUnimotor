@@ -19,7 +19,7 @@ public class fotoVehiculo implements Serializable {
 	@Column(name="url", length = 100)
 	private String url;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "id_vehiculo", nullable = false)
 	private Vehiculo vehiculo;
 	
@@ -51,6 +51,18 @@ public class fotoVehiculo implements Serializable {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	
+	
+
+
+	public Vehiculo getVehiculo() {
+		return vehiculo;
+	}
+
+
+	public void setVehiculo(Vehiculo vehiculo) {
+		this.vehiculo = vehiculo;
+	}
 
 
 	@Override
@@ -78,6 +90,9 @@ public class fotoVehiculo implements Serializable {
 			return false;
 		return true;
 	}
+
+
+
 	
 	
    

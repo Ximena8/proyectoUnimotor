@@ -21,8 +21,8 @@ public class CaractersiticasAdicionales implements Serializable {
 	@Column(name="nombre", length = 200, nullable = false)
 	private String nombre;
 	
-	@OneToMany(mappedBy = "caractersiticasAdicionales")
-	private List<Table> table;
+	@OneToMany(mappedBy = "caracteristicasAdicionales")
+	private List<Tabla> tabla;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -79,6 +79,6 @@ public class CaractersiticasAdicionales implements Serializable {
 			return false;
 		return true;
 	}
-    
+   
 	
 }

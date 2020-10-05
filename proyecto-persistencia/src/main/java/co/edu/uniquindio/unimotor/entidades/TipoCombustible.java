@@ -13,7 +13,6 @@ import javax.persistence.*;
 @Entity
 
 public class TipoCombustible implements Serializable {
-
 	   
 	@Id
 	@Column(name="id", length = 10)
