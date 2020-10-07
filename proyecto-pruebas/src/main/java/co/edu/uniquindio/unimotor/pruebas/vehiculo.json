@@ -1,0 +1,28 @@
+{
+	"VEHICULO": [
+		{
+			"id": "987",
+			"anio": "2018-11-3",
+			"descripcion": "Auto en buen estado",
+			"modelo": 2015,
+			"precio": 50000,
+			"id_ciudad": "4321",
+			"id_marca": "23we4",
+			"id_persona": "241",
+			"id_tipo_combustible": "123disel",
+			"id_tipo_vehiuclo": "123jep"
+		},
+		{
+			"id": "123",
+			"anio": "2018-11-12",
+			"descripcion": "Auto en buen estado",
+			"modelo": 2005,
+			"precio": 70000,
+			"id_ciudad": "4321",
+			"id_marca": "23we4",
+			"id_persona": "241",
+			"id_tipo_combustible": "123disel",
+			"id_tipo_vehiuclo": "123jep"
+		}
+	]
+}

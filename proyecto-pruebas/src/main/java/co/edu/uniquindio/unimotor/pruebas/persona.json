@@ -1,0 +1,58 @@
+{
+	" PERSONA": [
+		{
+			"id": "987",
+			"clave": "321",
+			"direccion": "calle 26 norte casa 950",
+			"email": "ximena@email.com",
+			"genero": "FEMENINO",
+			"nombre": "xIMENA Silva",
+			"id_ciudad": "52"
+		},
+		{
+			"id": "123",
+			"clave": "456",
+			"direccion": "calle 26 norte casa 950",
+			"email": "juan@email.com",
+			"genero": "FEMENINO",
+			"nombre": "Juan Paez",
+			"id_ciudad": "32"
+		},
+		{
+			"id": "234",
+			"clave": "398",
+			"direccion": "calle 26 norte casa 950",
+			"email": "sindya@email.com",
+			"genero": "FEMENINO",
+			"nombre": "Sindy Cuatin",
+			"id_ciudad": "51"
+		},
+		{
+			"id": "765",
+			"clave": "754",
+			"direccion": "calle 26 norte casa 950",
+			"email": "maria@email.com",
+			"genero": "FEMENINO",
+			"nombre": "maria hernandez",
+			"id_ciudad": "34"
+		},
+		{
+			"id": "325",
+			"clave": "956",
+			"direccion": "calle 26 norte casa 950",
+			"email": "daniel@email.com",
+			"genero": "MASCULINO",
+			"nombre": "Daniel Velez",
+			"id_ciudad": "56"
+		},
+		{
+			"id": "976",
+			"clave": "245",
+			"direccion": "calle 26 norte casa 950",
+			"email": "diego@email.com",
+			"genero": "MASCULINO",
+			"nombre": "Diego Silva",
+			"id_ciudad": "45"
+		}
+	]
+}
