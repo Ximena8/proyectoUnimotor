@@ -12,76 +12,91 @@ import javax.persistence.*;
  *
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "TODOS_VEHICULOS", query = "select v from Vehiculo v"),
+	@NamedQuery(name = "TODOS_VEHICULOS_TRANSMISION", query = "select v from Vehiculo v where v.transmision = :tran" ),
+	@NamedQuery(name = "TODOS_VEHICULOS_ANIO", query = "select v from Vehiculo v where v.anio >= 2011 and v.anio <= 2019" ),
+	@NamedQuery(name = "TODOS_VEHICULOS_PRECIO", query = "select v from Vehiculo v where v.precio between 2 and 6 " )
+})
+
 
 public class Vehiculo implements Serializable {
 
-   
+
 	@Id
-	@Column(name="id", length = 10)
-	private String id;
+	@Column(name="id")
+	private Integer id;
 	@Column(name="precio")
 	private Integer precio;
 	@Column(name="descripcion", length = 200, nullable = false)
 	private String descripcion;
-	@Column(name="modelo", length = 200, nullable = false)
-	private Integer modelo;
 	@Column(name="anio")
-	private String anio;
-	
+	private int anio;
+	@Column(name="vehiculoNuevo",nullable = false)
+	private boolean vehiculoNuevo;
+
+
 	@OneToMany(mappedBy = "vehiculo")
 	private List<Favorito> favorito;
 
 	@OneToMany(mappedBy = "vehiculo")
 	private List<Pregunta> pregunta;
-	
+
 	@OneToMany(mappedBy = "vehiculo")
 	private List<fotoVehiculo> FotoVehiculo;
-	
+
 	@OneToMany(mappedBy = "vehiculo")
-	private List<Tabla> tabla;
-	
+	private List<VehiculoCaracteristicas> tabla;
+
 	@ManyToOne()
 	@JoinColumn(name = "id_ciudad", nullable = false)
 	private Ciudad ciudad;
-	
-	@ManyToOne()
-	@JoinColumn(name = "id_marca", nullable = false)
-	private Marca marca;
-	
-	@ManyToOne()
-	@JoinColumn(name = "id_tipo_combustible", nullable = false)
-	private TipoCombustible tipoCombustible;
-	
+
 	@ManyToOne()
 	@JoinColumn(name = "id_persona", nullable = false)
 	private Persona persona;
+
+	
 	
 	@ManyToOne()
-	@JoinColumn(name = "id_tipo_vehiuclo", nullable = false)
+	@JoinColumn(name = "id_modelo", nullable = false)
+	private Modelo modelo;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name="tipo_combustible",nullable = false)
+	private TipoCombustible tipoCombustible;
+	
+
+	@Enumerated(EnumType.STRING)
+	@Column(name="tipo_vehiculo",nullable = false)
 	private TipoVehiculo tipoVehiculo;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name="transmision",nullable = false)
+	private Transmision transmision;
 	
 	private static final long serialVersionUID = 1L;
 
 	public Vehiculo() {
 		super();
 	}
-	
-	
-	public Vehiculo(String id, Integer precio, String descripcion, Integer modelo, String anio) {
+
+
+	public Vehiculo(Integer id, Integer precio, String descripcion, int anio, boolean vehiculoNuevo) {
 		super();
 		this.id = id;
 		this.precio = precio;
 		this.descripcion = descripcion;
-		this.modelo = modelo;
 		this.anio = anio;
+		this.vehiculoNuevo=vehiculoNuevo;
 	}
 
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}   
 	public Integer getPrecio() {
@@ -98,23 +113,22 @@ public class Vehiculo implements Serializable {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}   
-	public Integer getModelo() {
-		return this.modelo;
-	}
-
-	public void setModelo(Integer modelo) {
-		this.modelo = modelo;
-	}   
-	public String getAnio() {
+   
+	public int getAnio() {
 		return this.anio;
 	}
 
-	public void setAnio(String anio) {
+	public void setAnio(int anio) {
 		this.anio = anio;
+	} 
+
+	public boolean getvehiculoNuevo() {
+		return this.vehiculoNuevo;
 	}
- 
-	
-	
+
+	public void setvehiculoNuevo(boolean anio) {
+		this.vehiculoNuevo = vehiculoNuevo;
+	} 
 
 	public Ciudad getCiudad() {
 		return ciudad;
@@ -126,8 +140,8 @@ public class Vehiculo implements Serializable {
 	}
 
 
-	
-	
+
+
 	public TipoCombustible getTipoCombustible() {
 		return tipoCombustible;
 	}
@@ -138,8 +152,8 @@ public class Vehiculo implements Serializable {
 	}
 
 
-	
-	
+
+
 	public Persona getPersona() {
 		return persona;
 	}
@@ -149,8 +163,8 @@ public class Vehiculo implements Serializable {
 		this.persona = persona;
 	}
 
-	
-	
+
+
 
 	public TipoVehiculo getTipoVehiculo() {
 		return tipoVehiculo;
@@ -161,6 +175,18 @@ public class Vehiculo implements Serializable {
 		this.tipoVehiculo = tipoVehiculo;
 	}
 
+	
+
+
+	public Modelo getModelo() {
+		return modelo;
+	}
+
+
+	public void setModelo(Modelo modelo) {
+		this.modelo = modelo;
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -168,17 +194,6 @@ public class Vehiculo implements Serializable {
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
-	}
-
-	
-
-	public Marca getMarca() {
-		return marca;
-	}
-
-
-	public void setMarca(Marca marca) {
-		this.marca = marca;
 	}
 
 
@@ -202,15 +217,13 @@ public class Vehiculo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Vehiculo [id=" + id + ", precio=" + precio + ", descripcion=" + descripcion + ", modelo=" + modelo
-				+ ", anio=" + anio + ", favorito=" + favorito + ", pregunta=" + pregunta + ", FotoVehiculo="
-				+ FotoVehiculo + ", tabla=" + tabla + ", ciudad=" + ciudad + ", marca=" + marca + ", tipoCombustible="
-				+ tipoCombustible + ", persona=" + persona + ", tipoVehiculo=" + tipoVehiculo + "]";
+		return "Vehiculo [id=" + id + ", precio=" + precio + ", descripcion=" + descripcion + ", anio=" + anio
+				+ ", vehiculoNuevo=" + vehiculoNuevo + "]";
 	}
 
 
 	
-	
-	
+
+
 	
 }

@@ -12,37 +12,37 @@ import javax.persistence.*;
  */
 @Entity
 
-public class CaractersiticasAdicionales implements Serializable {
+public class Caracteristicas implements Serializable {
 
 	   
 	@Id
-	@Column(name="id", length = 10)
-	private String id;
+	@Column(name="id")
+	private Integer id;
 	@Column(name="nombre", length = 200, nullable = false)
 	private String nombre;
 	
-	@OneToMany(mappedBy = "caracteristicasAdicionales")
-	private List<Tabla> tabla;
+	@OneToMany(mappedBy = "caracteristicas")
+	private List<VehiculoCaracteristicas> tabla;
 	
 	private static final long serialVersionUID = 1L;
 
-	public CaractersiticasAdicionales() {
+	public Caracteristicas() {
 		super();
 	}   
 	
 	
-	public CaractersiticasAdicionales(String id, String nombre) {
+	public Caracteristicas(Integer id, String nombre) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 	}
 
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}   
 	public String getNombre() {
@@ -71,7 +71,7 @@ public class CaractersiticasAdicionales implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CaractersiticasAdicionales other = (CaractersiticasAdicionales) obj;
+		Caracteristicas other = (Caracteristicas) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -79,6 +79,9 @@ public class CaractersiticasAdicionales implements Serializable {
 			return false;
 		return true;
 	}
+
+
+ 
    
 	
 }

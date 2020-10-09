@@ -7,31 +7,31 @@ import java.lang.String;
  * ID class for entity: Tabla
  *
  */ 
-public class TablaPK  implements Serializable {   
+public class VehiculoCaracteristicasPK  implements Serializable {   
    
 	         
-	private String idVehiculo;         
-	private String idCaracteristicas;
+	private Integer idVehiculo;         
+	private Integer idCaracteristicas;
 	private static final long serialVersionUID = 1L;
 
-	public TablaPK() {}
+	public VehiculoCaracteristicasPK() {}
 
 	
 
-	public String getIdVehiculo() {
+	public Integer getIdVehiculo() {
 		return this.idVehiculo;
 	}
 
-	public void setIdVehiculo(String idVehiculo) {
+	public void setIdVehiculo(Integer idVehiculo) {
 		this.idVehiculo = idVehiculo;
 	}
 	
 
-	public String getIdCaracteristicas() {
+	public Integer getIdCaracteristicas() {
 		return this.idCaracteristicas;
 	}
 
-	public void setIdCaracteristicas(String idCaracteristicas) {
+	public void setIdCaracteristicas(Integer idCaracteristicas) {
 		this.idCaracteristicas = idCaracteristicas;
 	}
 	
@@ -43,10 +43,10 @@ public class TablaPK  implements Serializable {
 		if (o == this) {
 			return true;
 		}
-		if (!(o instanceof TablaPK)) {
+		if (!(o instanceof VehiculoCaracteristicasPK)) {
 			return false;
 		}
-		TablaPK other = (TablaPK) o;
+		VehiculoCaracteristicasPK other = (VehiculoCaracteristicasPK) o;
 		return true
 			&& (getIdVehiculo() == null ? other.getIdVehiculo() == null : getIdVehiculo().equals(other.getIdVehiculo()))
 			&& (getIdCaracteristicas() == null ? other.getIdCaracteristicas() == null : getIdCaracteristicas().equals(other.getIdCaracteristicas()));

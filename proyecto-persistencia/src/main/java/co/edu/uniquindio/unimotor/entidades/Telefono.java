@@ -18,7 +18,7 @@ public class Telefono implements Serializable {
 	private int valor;   
 	@Id
 	@Column(name="id", length = 10)
-	private String id;
+	private Integer id;
 	
 	@ManyToOne()
 	@JoinColumn(name = "id_persona", nullable = false)
@@ -34,7 +34,7 @@ public class Telefono implements Serializable {
 	}   
 	
 	
-	public Telefono(String clave, int valor, String id) {
+	public Telefono(String clave, int valor, Integer id) {
 		super();
 		this.clave = clave;
 		this.valor = valor;
@@ -56,11 +56,11 @@ public class Telefono implements Serializable {
 	public void setValor(int valor) {
 		this.valor = valor;
 	}   
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
@@ -101,8 +101,10 @@ public class Telefono implements Serializable {
 	}
 
 
+	@Override
+	public String toString() {
+		return "Telefono [clave=" + clave + ", valor=" + valor + ", id=" + id + "]";
+	}
+    
 	
-	
-	
-   
 }

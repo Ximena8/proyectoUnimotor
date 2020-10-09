@@ -11,21 +11,29 @@ import javax.persistence.*;
  *
  */
 @Entity
-
+@NamedQueries({
+	@NamedQuery(name = "AUTENTICAR_PERSONA", query = "select p from Persona p where p.email = :email and p.clave = :clave")
+})
 public class Persona implements Serializable {
 
 	   
 	@Id
-	@Column(name="id", length = 10)
-	private String id;
+	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
 	@Column(name="nombre", length = 200, nullable = false)
 	private String nombre;
-	@Column(name="email", unique = true, nullable = false)
+	
+	@Column(name="email", nullable = false, length = 200, unique = true)
 	private String email;
-	@Column(name="clave", unique = true,length = 100, nullable = false)
+	
+	@Column(name="clave", length = 100, nullable = false)
 	private String clave;
+	
 	@Column(name="direccion")
 	private String direccion;
+	
 	@Column(name="genero")
 	@Enumerated(EnumType.STRING)
 	private Genero genero;
@@ -66,7 +74,7 @@ public class Persona implements Serializable {
 
 
 
-	public Persona(String id, String nombre, String email, String clave, String direccion) {
+	public Persona(Integer id, String nombre, String email, String clave, String direccion) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -77,11 +85,11 @@ public class Persona implements Serializable {
 
 
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}   
 	public String getNombre() {
@@ -129,8 +137,6 @@ public class Persona implements Serializable {
 
 
 
-	
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -163,14 +169,8 @@ public class Persona implements Serializable {
 	@Override
 	public String toString() {
 		return "Persona [id=" + id + ", nombre=" + nombre + ", email=" + email + ", clave=" + clave + ", direccion="
-				+ direccion + ", genero=" + genero + ", ciudad=" + ciudad + ", telefono=" + telefono + ", favorito="
-				+ favorito + ", Pregunta=" + Pregunta + ", vehiculo=" + vehiculo + "]";
+				+ direccion + "]";
 	}
 
-
 	
-	
-	
-	
-   
 }

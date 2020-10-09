@@ -16,13 +16,13 @@ public class Marca implements Serializable {
 
 	   
 	@Id
-	@Column(name="id", length = 10)
-	private String id;
+	@Column(name="id")
+	private Integer id;
 	@Column(name="nombre", length = 200, nullable = false)
 	private String nombre;
 	
 	@OneToMany(mappedBy = "marca")
-	private List<Vehiculo> vehiculo;
+	private List<Modelo> modelo;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -31,18 +31,18 @@ public class Marca implements Serializable {
 	}  
 	
 	
-	public Marca(String id, String nombre) {
+	public Marca(Integer id, String nombre) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 	}
 
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}   
 	public String getNombre() {
@@ -79,7 +79,13 @@ public class Marca implements Serializable {
 			return false;
 		return true;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Marca [id=" + id + ", nombre=" + nombre + "]";
+	}
+
+
 	
-	
-   
 }

@@ -10,20 +10,20 @@ import javax.persistence.*;
  */
 @Entity
 
-@IdClass(TablaPK.class)
-public class Tabla implements Serializable {
+@IdClass(VehiculoCaracteristicasPK.class)
+public class VehiculoCaracteristicas implements Serializable {
 
 	   
 	@Id
-	@Column(name="id_vehiculo1", length = 200, nullable = false)
-	private String idVehiculo;   
+	@Column(name="idVehiculo")
+	private Integer idVehiculo;   
 	@Id
-	@Column(name="id_caracteristicas1", length = 200, nullable = false)
-	private String idCaracteristicas;
+	@Column(name="idaracteristicas")
+	private Integer idCaracteristicas;
 	
 	@ManyToOne()
 	@JoinColumn(name = "id_caracteristicas", nullable = false)
-	private CaractersiticasAdicionales caracteristicasAdicionales;
+	private Caracteristicas caracteristicas;
 	
 	
 	@ManyToOne()
@@ -33,42 +33,42 @@ public class Tabla implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	public Tabla() {
+	public VehiculoCaracteristicas() {
 		super();
 	} 
 	
 	
-	public Tabla(String idVehiculo, String idCaracteristicas) {
+	public VehiculoCaracteristicas(Integer idVehiculo, Integer idCaracteristicas) {
 		super();
 		this.idVehiculo = idVehiculo;
 		this.idCaracteristicas = idCaracteristicas;
 	}
 
 
-	public String getIdVehiculo() {
+	public Integer getIdVehiculo() {
 		return this.idVehiculo;
 	}
 
-	public void setIdVehiculo(String idVehiculo) {
+	public void setIdVehiculo(Integer idVehiculo) {
 		this.idVehiculo = idVehiculo;
 	}   
-	public String getIdCaracteristicas() {
+	public Integer getIdCaracteristicas() {
 		return this.idCaracteristicas;
 	}
 
-	public void setIdCaracteristicas(String idCaracteristicas) {
+	public void setIdCaracteristicas(Integer idCaracteristicas) {
 		this.idCaracteristicas = idCaracteristicas;
 	}
 	
 	
 	
-	public CaractersiticasAdicionales getCaracteristicasAdicionales() {
-		return caracteristicasAdicionales;
+	public Caracteristicas getCaracteristicasAdicionales() {
+		return caracteristicas;
 	}
 
 
-	public void setCaracteristicasAdicionales(CaractersiticasAdicionales caracteristicasAdicionales) {
-		this.caracteristicasAdicionales = caracteristicasAdicionales;
+	public void setCaracteristicasAdicionales(Caracteristicas caracteristicas) {
+		this.caracteristicas = caracteristicas;
 	}
 
 
@@ -80,6 +80,8 @@ public class Tabla implements Serializable {
 		result = prime * result + ((idVehiculo == null) ? 0 : idVehiculo.hashCode());
 		return result;
 	}
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -88,7 +90,7 @@ public class Tabla implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Tabla other = (Tabla) obj;
+		VehiculoCaracteristicas other = (VehiculoCaracteristicas) obj;
 		if (idCaracteristicas == null) {
 			if (other.idCaracteristicas != null)
 				return false;
@@ -101,5 +103,13 @@ public class Tabla implements Serializable {
 			return false;
 		return true;
 	}
+
+
+	@Override
+	public String toString() {
+		return "VehiculoCaracteristicas [idVehiculo=" + idVehiculo + ", idCaracteristicas=" + idCaracteristicas + "]";
+	}
+
+	
    
 }

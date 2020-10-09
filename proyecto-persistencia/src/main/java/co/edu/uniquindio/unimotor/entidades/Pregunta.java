@@ -15,8 +15,8 @@ public class Pregunta implements Serializable {
 
 	   
 	@Id
-	@Column(name="id", length = 10)
-	private String id;
+	@Column(name="id",nullable = false )
+	private Integer id;
 	@Column(name="pregunta", length = 200, nullable = false)
 	private String pregunta;
 	@Temporal(TemporalType.TIMESTAMP )
@@ -38,7 +38,7 @@ public class Pregunta implements Serializable {
 	}  
 	
 	
-	public Pregunta(String id, String pregunta, Date fechaPregunta) {
+	public Pregunta(Integer id, String pregunta, Date fechaPregunta) {
 		super();
 		this.id = id;
 		this.pregunta = pregunta;
@@ -46,11 +46,11 @@ public class Pregunta implements Serializable {
 	}
 
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}   
 	public String getPregunta() {
@@ -118,9 +118,11 @@ public class Pregunta implements Serializable {
 	}
 
 
-	
-     
-	
-	
+	@Override
+	public String toString() {
+		return "Pregunta [id=" + id + ", pregunta=" + pregunta + ", fechaPregunta=" + fechaPregunta + "]";
+	}
+
+      
 	
 }

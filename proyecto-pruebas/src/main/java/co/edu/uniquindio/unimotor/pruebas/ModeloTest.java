@@ -45,7 +45,7 @@ public class ModeloTest {
 	@Transactional(value = TransactionMode.ROLLBACK)
 	public void persistenciaClienteTest() {
 
-		Persona p = new Persona("123","ximena","Ximena@gmail.com", "Mujer", "calle siempre vivas");
+		Persona p = new Persona(123,"ximena","Ximena@gmail.com", "Mujer", "calle siempre vivas");
 
 		entityManager.persist(p);
 

@@ -16,6 +16,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.hazelcast.internal.json.ParseException;
+
 import co.edu.uniquindio.unimotor.entidades.Persona;
 import co.edu.uniquindio.unimotor.entidades.Vehiculo;
 
@@ -37,14 +39,38 @@ public class EntidadTest {
 				.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
 
 	}
+
+
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"unimotor.json","Vehiculo.json"})
+	public void buscarVehiculoTest() {
+		
+	Vehiculo v = entityManager.find(Vehiculo.class, 1);
+		System.out.println(v);
+		
+	}
 	
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
-	@UsingDataSet({"persona.json"})
+	@UsingDataSet({"unimotor.json"})
+	public void eliminarPersonaTest() throws ParseException{
+		
+		Persona p = entityManager.find(Persona.class, 2);
+		entityManager.remove(p);
+		
+		Persona pBusacada = entityManager.find(Persona.class,2);
+		Assert.assertNull( pBusacada);
+		
+	}
+	
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"unimotor.json"})
 	
 	public void buscarPersonaTest() {
 		
-		Persona p = entityManager.find(Persona.class, "765");
+		Persona p = entityManager.find(Persona.class, 5);
 		Assert.assertEquals("maria@email.com", p.getEmail());
 		
 	}
@@ -52,37 +78,14 @@ public class EntidadTest {
 	
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
-	@UsingDataSet({"Persona.json","Vehiculo.json"})
-	public void buscarVehiculoTest() {
+	@UsingDataSet({"unimotor.json"})
+	public void actualizarPersonaTest() throws ParseException{
 		
-	Vehiculo v = entityManager.find(Vehiculo.class, "987");
-		System.out.println(v);
-		
-	}
-	
-	@Test
-	@Transactional(value = TransactionMode.ROLLBACK)
-	@UsingDataSet({"persona.json"})
-	public void eliminarPersonaTest() {
-		
-		Persona p = entityManager.find(Persona.class, "765");
-		entityManager.remove(p);
-		
-		Persona pBusacada = entityManager.find(Persona.class, "765");
-		Assert.assertNotNull( pBusacada);
-		
-	}
-	
-	@Test
-	@Transactional(value = TransactionMode.ROLLBACK)
-	@UsingDataSet({"persona.json"})
-	public void actualizarPersonaTest() {
-		
-		Persona p = entityManager.find(Persona.class, "765");
+		Persona p = entityManager.find(Persona.class, 4);
 		p.setEmail("maria@gmail.com");
 		entityManager.merge(p);
 		
-		Persona pBusacada = entityManager.find(Persona.class, "765");
+		Persona pBusacada = entityManager.find(Persona.class, 4);
 		Assert.assertEquals("maria@gmail.com", pBusacada.getEmail());
 		
 	}

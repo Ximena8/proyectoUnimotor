@@ -10,58 +10,73 @@ import java.lang.String;
 public class FavoritoPK  implements Serializable {   
    
 	         
-	private String idPersona;         
-	private String idVehiculo;
+	private Integer idPersona;         
+	private Integer idVehiculo;
 	private static final long serialVersionUID = 1L;
 
 	public FavoritoPK() {}
 
 	
 
-	public String getIdPersona() {
+	public Integer getIdPersona() {
 		return this.idPersona;
 	}
 
-	public void setIdPersona(String idPersona) {
+	public void setIdPersona(Integer idPersona) {
 		this.idPersona = idPersona;
 	}
 	
 
-	public String getIdVehiculo() {
+	public Integer getIdVehiculo() {
 		return this.idVehiculo;
 	}
 
-	public void setIdVehiculo(String idVehiculo) {
+	public void setIdVehiculo(Integer idVehiculo) {
 		this.idVehiculo = idVehiculo;
 	}
-	
-   
-	/*
-	 * @see java.lang.Object#equals(Object)
-	 */	
-	public boolean equals(Object o) {
-		if (o == this) {
-			return true;
-		}
-		if (!(o instanceof FavoritoPK)) {
-			return false;
-		}
-		FavoritoPK other = (FavoritoPK) o;
-		return true
-			&& (getIdPersona() == null ? other.getIdPersona() == null : getIdPersona().equals(other.getIdPersona()))
-			&& (getIdVehiculo() == null ? other.getIdVehiculo() == null : getIdVehiculo().equals(other.getIdVehiculo()));
-	}
-	
-	/*	 
-	 * @see java.lang.Object#hashCode()
-	 */	
+
+
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (getIdPersona() == null ? 0 : getIdPersona().hashCode());
-		result = prime * result + (getIdVehiculo() == null ? 0 : getIdVehiculo().hashCode());
+		result = prime * result + ((idPersona == null) ? 0 : idPersona.hashCode());
+		result = prime * result + ((idVehiculo == null) ? 0 : idVehiculo.hashCode());
 		return result;
 	}
-   
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FavoritoPK other = (FavoritoPK) obj;
+		if (idPersona == null) {
+			if (other.idPersona != null)
+				return false;
+		} else if (!idPersona.equals(other.idPersona))
+			return false;
+		if (idVehiculo == null) {
+			if (other.idVehiculo != null)
+				return false;
+		} else if (!idVehiculo.equals(other.idVehiculo))
+			return false;
+		return true;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "FavoritoPK [idPersona=" + idPersona + ", idVehiculo=" + idVehiculo + "]";
+	}
+ 
+
    
 }

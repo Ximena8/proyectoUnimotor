@@ -14,9 +14,9 @@ public class fotoVehiculo implements Serializable {
 
 	   
 	@Id
-	@Column(name="id", length = 10)
-	private String id;
-	@Column(name="url", length = 100)
+	@Column(name="id")
+	private Integer id;
+	@Column(name="url", length = 1000)
 	private String url;
 	
 	@ManyToOne()
@@ -30,18 +30,18 @@ public class fotoVehiculo implements Serializable {
 	}   
 	
 	
-	public fotoVehiculo(String id, String url) {
+	public fotoVehiculo(Integer id, String url) {
 		super();
 		this.id = id;
 		this.url = url;
 	}
 
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}   
 	public String getUrl() {
@@ -92,8 +92,10 @@ public class fotoVehiculo implements Serializable {
 	}
 
 
+	@Override
+	public String toString() {
+		return "fotoVehiculo [id=" + id + ", url=" + url + "]";
+	}
 
-	
-	
    
 }

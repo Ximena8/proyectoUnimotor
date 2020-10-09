@@ -15,11 +15,11 @@ public class Favorito implements Serializable {
 
 	   
 	@Id
-	@Column(name="id_persona1", length = 10)
-	private String idPersona;   
+	@Column(name="idPersona")
+	private Integer idPersona;   
 	@Id
-	@Column(name="id_vehiculo1", length = 10)
-	private String idVehiculo;
+	@Column(name="idvehiculo1", length = 10)
+	private Integer idVehiculo;
 	
 	@ManyToOne()
 	@JoinColumn(name = "id_persona", nullable = false)
@@ -37,7 +37,7 @@ public class Favorito implements Serializable {
 	
 	
 	
-	public Favorito(String idPersona, String idVehiculo) {
+	public Favorito(Integer idPersona, Integer idVehiculo) {
 		super();
 		this.idPersona = idPersona;
 		this.idVehiculo = idVehiculo;
@@ -45,18 +45,18 @@ public class Favorito implements Serializable {
 
 
 
-	public String getIdPersona() {
+	public Integer getIdPersona() {
 		return this.idPersona;
 	}
 
-	public void setIdPersona(String idPersona) {
+	public void setIdPersona(Integer idPersona) {
 		this.idPersona = idPersona;
 	}   
-	public String getIdVehiculo() {
+	public Integer getIdVehiculo() {
 		return this.idVehiculo;
 	}
 
-	public void setIdVehiculo(String idVehiculo) {
+	public void setIdVehiculo(Integer idVehiculo) {
 		this.idVehiculo = idVehiculo;
 	}
 	  
@@ -95,6 +95,9 @@ public class Favorito implements Serializable {
 		result = prime * result + ((idVehiculo == null) ? 0 : idVehiculo.hashCode());
 		return result;
 	}
+
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -116,7 +119,14 @@ public class Favorito implements Serializable {
 			return false;
 		return true;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "Favorito [idPersona=" + idPersona + ", idVehiculo=" + idVehiculo + "]";
+	}
+
+     
 	
-	
-   
 }
