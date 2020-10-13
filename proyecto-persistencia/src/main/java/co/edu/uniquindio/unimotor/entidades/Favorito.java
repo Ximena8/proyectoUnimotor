@@ -1,7 +1,7 @@
 package co.edu.uniquindio.unimotor.entidades;
 
 import java.io.Serializable;
-import java.lang.String;
+import java.lang.Integer;
 import javax.persistence.*;
 
 /**
@@ -9,6 +9,10 @@ import javax.persistence.*;
  *
  */
 @Entity
+@NamedQueries({
+	
+	@NamedQuery(name = "LISTA__PERSONA_FAVORITO", query = "select f.vehiculo from Favorito f where f.persona.email = :email")
+})
 
 @IdClass(FavoritoPK.class)
 public class Favorito implements Serializable {
@@ -17,34 +21,25 @@ public class Favorito implements Serializable {
 	@Id
 	@Column(name="idPersona")
 	private Integer idPersona;   
+	
 	@Id
-	@Column(name="idvehiculo1", length = 10)
+	@Column(name="idVehiculo")
 	private Integer idVehiculo;
 	
 	@ManyToOne()
-	@JoinColumn(name = "id_persona", nullable = false)
+	@JoinColumn(name = "id_persona")
 	private Persona persona;
 	
 	@ManyToOne()
 	@JoinColumn(name = "id_vehiculo", nullable = false)
 	private Vehiculo vehiculo;
 	
+	
 	private static final long serialVersionUID = 1L;
 
 	public Favorito() {
 		super();
-	} 
-	
-	
-	
-	public Favorito(Integer idPersona, Integer idVehiculo) {
-		super();
-		this.idPersona = idPersona;
-		this.idVehiculo = idVehiculo;
-	}
-
-
-
+	}   
 	public Integer getIdPersona() {
 		return this.idPersona;
 	}
@@ -59,34 +54,21 @@ public class Favorito implements Serializable {
 	public void setIdVehiculo(Integer idVehiculo) {
 		this.idVehiculo = idVehiculo;
 	}
-	  
 	
 	
 	
 	public Persona getPersona() {
 		return persona;
 	}
-
-
-
 	public void setPersona(Persona persona) {
 		this.persona = persona;
 	}
-
-
-
 	public Vehiculo getVehiculo() {
 		return vehiculo;
 	}
-
-
-
 	public void setVehiculo(Vehiculo vehiculo) {
 		this.vehiculo = vehiculo;
 	}
-
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -95,9 +77,6 @@ public class Favorito implements Serializable {
 		result = prime * result + ((idVehiculo == null) ? 0 : idVehiculo.hashCode());
 		return result;
 	}
-
-
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -119,14 +98,11 @@ public class Favorito implements Serializable {
 			return false;
 		return true;
 	}
-
-
-
 	@Override
 	public String toString() {
 		return "Favorito [idPersona=" + idPersona + ", idVehiculo=" + idVehiculo + "]";
 	}
-
-     
+   
+	
 	
 }

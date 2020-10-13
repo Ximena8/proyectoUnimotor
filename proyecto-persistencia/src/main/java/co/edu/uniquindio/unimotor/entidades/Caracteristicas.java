@@ -20,9 +20,13 @@ public class Caracteristicas implements Serializable {
 	private Integer id;
 	@Column(name="nombre", length = 200, nullable = false)
 	private String nombre;
+//	
+//	@OneToMany(mappedBy = "caractes")
+//	private List<VehiculoCaract> vc;
+//	
+	@ManyToMany( mappedBy = "caracteristicas")
+	private List<Vehiculo> vehiculo;
 	
-	@OneToMany(mappedBy = "caracteristicas")
-	private List<VehiculoCaracteristicas> tabla;
 	
 	private static final long serialVersionUID = 1L;
 

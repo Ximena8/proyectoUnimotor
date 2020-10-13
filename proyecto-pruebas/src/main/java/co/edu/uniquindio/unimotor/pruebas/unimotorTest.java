@@ -21,6 +21,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import co.edu.uniquindio.unimotor.dto.ConsultaPerssonasCiudadDTO;
 import co.edu.uniquindio.unimotor.entidades.Persona;
 import co.edu.uniquindio.unimotor.entidades.Transmision;
 import co.edu.uniquindio.unimotor.entidades.Vehiculo;
@@ -47,7 +48,7 @@ public class unimotorTest {
 	@Test
 	public void test() {
 
-
+  
 	}
 	
 	
@@ -119,6 +120,152 @@ public class unimotorTest {
 		
 		
 	}
+	
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"unimotor.json"})
+	public void vehiculoDescripcioTest() {
+		
+		//devuelve arreglo de objetos en una cpnsulta
+		TypedQuery <Object[]> q = entityManager.createNamedQuery("VEHICULO_DESCRIPCION", Object[].class);
+		              
+		   q.setParameter("descrip","Moto en exceltes condiciones, sin seguro");
+		
+				List<Object[]> l = q.getResultList();
+		
+	 for( Object[] vehiculo : l ) {
+		 
+		 System.out.println(vehiculo[0]+" "+vehiculo[1]+" "+vehiculo[2]);
+	 }
+  
+	}
+	
+	
+	
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"unimotor.json"})
+	public void listaVehiculosFavoritosTest() {
+		
+		TypedQuery <Vehiculo>q = entityManager.createNamedQuery("LISTA_FAVORITOS_PERSONA", Vehiculo.class);
+		q.setParameter("email", "ximena@email.com");
+		List<Vehiculo> l = q.getResultList();
+		
+	 for(Vehiculo vehiculo : l ) {
+		 
+		 System.out.println(vehiculo);
+	 }
+		
+		
+	}
+	
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"unimotor.json"})
+	public void listaVehiculosFavoritos2Test() {
+		
+		TypedQuery <Object[]>q = entityManager.createNamedQuery("LISTA_FAVORITOS_JOIN", Object[].class);
+		q.setParameter("email", "ximena@email.com");
+		List<Object[]> l = q.getResultList();
+		
+	 for(Object[] vehiculo : l ) {
+		 
+		 System.out.println(vehiculo[0]+" "+vehiculo[1]);
+	 }
+		
+		
+	}
+	
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"unimotor.json"})
+	public void listaPersonaVehiculoTest() {
+		
+		TypedQuery <Object[]>q = entityManager.createNamedQuery("LISTA_VEHICULOS_VENTA", Object[].class);
+		
+		List<Object[]> l = q.getResultList();
+		
+	 for(Object[] vehiculo : l ) {
+		 
+		 System.out.println(vehiculo[0]+"---"+vehiculo[1]);
+	 }
+		
+		
+	}
+	
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"unimotor.json"})
+	public void listaPreguntasVehiculoTest() {
+		
+		TypedQuery <Object[]>q = entityManager.createNamedQuery("LISTA_PREGUNTAS_VEHICULO", Object[].class);
+		
+		List<Object[]> l = q.getResultList();
+		
+	 for(Object[] vehiculo : l ) {
+		 
+		 System.out.println(vehiculo[0]+"---"+vehiculo[1]);
+	 }
+		
+		
+	}
+	
+	
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"unimotor.json"})
+	public void listaPersonasDistintasTest() {
+		
+		TypedQuery <Persona>q = entityManager.createNamedQuery("LISTA_PERSONAS_PREGUNTA_VEHICULO", Persona.class);
+		
+		List<Persona> l = q.getResultList();
+		
+	 for(Persona p : l ) {
+		 
+		 System.out.println(p);
+	 }
+		
+		
+	}
+	
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"unimotor.json"})
+	public void listaFotosVehiculoTest() {
+		
+		TypedQuery <Vehiculo>q = entityManager.createNamedQuery("LISTA_FOTOS_VEHICULO", Vehiculo.class);
+		q.setParameter("marca","");
+		q.setParameter("precioMax","");
+		q.setParameter("precioMin","");
+		
+		List<Vehiculo> l = q.getResultList();
+		
+	 for(Vehiculo vehiculo : l ) {
+		 
+		 System.out.println(vehiculo);
+	 }
+		
+		
+	}
+	
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"unimotor.json"})
+	public void listaPersonasCiudadTest() {
+		
+		TypedQuery <ConsultaPerssonasCiudadDTO>q = entityManager.createNamedQuery("LISTA_CIUDAD_PERSONAS", ConsultaPerssonasCiudadDTO.class);
+		q.setParameter("nombre","Medellin");
+		
+		
+		List<ConsultaPerssonasCiudadDTO> l = q.getResultList();
+		
+	 for(ConsultaPerssonasCiudadDTO cpc : l ) {
+		 
+		 System.out.println(cpc);
+	 }
+		
+		
+	}
+	
 }
-
 

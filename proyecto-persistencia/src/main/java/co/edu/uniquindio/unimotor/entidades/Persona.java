@@ -12,8 +12,14 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "AUTENTICAR_PERSONA", query = "select p from Persona p where p.email = :email and p.clave = :clave")
+	@NamedQuery(name = "AUTENTICAR_PERSONA", query = "select p from Persona p where p.email = :email and p.clave = :clave"),
+	@NamedQuery(name = "LISTA_FAVORITOS_PERSONA", query = "select f.vehiculo from Persona p, IN (p.favorito) f where p.email = :email"),
+	@NamedQuery(name = "LISTA_FAVORITOS_PERSONA2", query = "select f.vehiculo, p.nombre from Persona p, IN (p.favorito) f where p.email = :email"),
+	@NamedQuery(name = "LISTA_FAVORITOS_PERSONA_JOIN", query = "select f.vehiculo, p.nombre from Persona p join p.favorito f where p.email = :email"),
+	@NamedQuery(name = "LISTA_VEHICULOS_VENTA", query = "select p.email, v from  Persona p left join p.vehiculo v"),
+	@NamedQuery(name = "LISTA_CIUDAD_PERSONAS", query = "select new co.edu.uniquindio.unimotor.dto.ConsultaPerssonasCiudadDTO (p.nombre, p.email, p.direccion) from Persona p where p.ciudad.nombre = :nombre")
 })
+
 public class Persona implements Serializable {
 
 	   
@@ -38,12 +44,12 @@ public class Persona implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Genero genero;
 	
+	@ElementCollection
+	private List<Integer> telefonos; 
+	
 	@ManyToOne()
 	@JoinColumn(name = "id_ciudad", nullable = false)
 	private Ciudad ciudad;
-	
-	@OneToMany(mappedBy = "persona")
-	private List<Telefono> telefono;
 	
 	@OneToMany(mappedBy = "persona")
 	private List<Favorito> favorito;

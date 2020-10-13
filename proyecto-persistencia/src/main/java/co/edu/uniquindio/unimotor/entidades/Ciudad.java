@@ -11,13 +11,15 @@ import javax.persistence.*;
  *
  */
 @Entity
+@NamedQuery(name = "LISTA_PERSONAS_CIUDAD", query = "select p.nombre, p.email, p.direccion from  Ciudad c join c.persona  p where c.nombre = :nombre")
 
 public class Ciudad implements Serializable {
 
 	  
 	@Id
-	@Column(name="id", length = 10)
+	@Column(name="id")
 	private Integer id;
+	
 	@Column(name="nombre", length = 200, nullable = false)
 	private String nombre;
 	
@@ -54,6 +56,28 @@ public class Ciudad implements Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	
+	
+
+	public List<Persona> getPersona() {
+		return persona;
+	}
+
+
+	public void setPersona(List<Persona> persona) {
+		this.persona = persona;
+	}
+
+
+	public List<Vehiculo> getVehiculo() {
+		return Vehiculo;
+	}
+
+
+	public void setVehiculo(List<Vehiculo> vehiculo) {
+		Vehiculo = vehiculo;
 	}
 
 

@@ -3,6 +3,8 @@ package co.edu.uniquindio.unimotor.entidades;
 import java.io.Serializable;
 import java.lang.String;
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -10,6 +12,7 @@ import javax.persistence.*;
  *
  */
 @Entity
+@NamedQuery(name = "LISTA_PERSONAS_PREGUNTA_VEHICULO", query = "select distinct p.persona from Pregunta p where p.vehiculo.id = :id")
 
 public class Pregunta implements Serializable {
 
@@ -29,6 +32,10 @@ public class Pregunta implements Serializable {
 	@ManyToOne()
 	@JoinColumn(name = "id_vehiculo", nullable = false) 
 	private Vehiculo vehiculo;
+	
+	@ManyToOne()
+	@JoinColumn(name = "id_pregunta", nullable = false) 
+	private Pregunta Pregunta;
 	
 	
 	private static final long serialVersionUID = 1L;

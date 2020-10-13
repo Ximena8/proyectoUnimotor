@@ -3,6 +3,7 @@ package co.edu.uniquindio.unimotor.entidades;
 import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -11,12 +12,19 @@ import javax.persistence.*;
  * Entity implementation class for Entity: Vehiculo
  *
  */
+
+//consultas
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "TODOS_VEHICULOS", query = "select v from Vehiculo v"),
 	@NamedQuery(name = "TODOS_VEHICULOS_TRANSMISION", query = "select v from Vehiculo v where v.transmision = :tran" ),
 	@NamedQuery(name = "TODOS_VEHICULOS_ANIO", query = "select v from Vehiculo v where v.anio >= 2011 and v.anio <= 2019" ),
-	@NamedQuery(name = "TODOS_VEHICULOS_PRECIO", query = "select v from Vehiculo v where v.precio between 2 and 6 " )
+	@NamedQuery(name = "TODOS_VEHICULOS_PRECIO", query = "select v from Vehiculo v where v.precio between :precioMenor and :precioMayor " ),
+	@NamedQuery(name = "VEHICULO_DESCRIPCION", query = "select v.modelo.nombre, v.precio,  v.anio from  Vehiculo v where v.descripcion = :descrip"),
+	@NamedQuery(name = "LISTA_PREGUNTAS_VEHICULO", query = "select v,p from Vehiculo v left join v.pregunta p "),
+	@NamedQuery(name = "LISTA_CARACTERISTICAS_VEHICULO", query = "select C from Vehiculo v join v.caracteristicas c where v.id =:id "),
+	@NamedQuery(name = "LISTA_FOTOS_VEHICULO", query = "select v from Vehiculo v  where v.modelo.marca.nombre = :marca and v.vehiculoNuevo = true and v.precio between :precioMin  and :precioMax ")
+	
 })
 
 
@@ -26,27 +34,31 @@ public class Vehiculo implements Serializable {
 	@Id
 	@Column(name="id")
 	private Integer id;
+	
 	@Column(name="precio")
 	private Integer precio;
+	
 	@Column(name="descripcion", length = 200, nullable = false)
 	private String descripcion;
-	@Column(name="anio")
+	
+	@Column(name="anio", nullable = false)
 	private int anio;
+	
 	@Column(name="vehiculoNuevo",nullable = false)
 	private boolean vehiculoNuevo;
 
+	@ElementCollection
+	private ArrayList<String> fotos; 
 
+	@ManyToMany
+	private List<Caracteristicas> caracteristicas;
+	
 	@OneToMany(mappedBy = "vehiculo")
 	private List<Favorito> favorito;
 
 	@OneToMany(mappedBy = "vehiculo")
 	private List<Pregunta> pregunta;
 
-	@OneToMany(mappedBy = "vehiculo")
-	private List<fotoVehiculo> FotoVehiculo;
-
-	@OneToMany(mappedBy = "vehiculo")
-	private List<VehiculoCaracteristicas> tabla;
 
 	@ManyToOne()
 	@JoinColumn(name = "id_ciudad", nullable = false)
@@ -185,6 +197,18 @@ public class Vehiculo implements Serializable {
 
 	public void setModelo(Modelo modelo) {
 		this.modelo = modelo;
+	}
+	
+	
+
+
+	public ArrayList<String> getFotos() {
+		return fotos;
+	}
+
+
+	public void setFotos(ArrayList<String> fotos) {
+		this.fotos = fotos;
 	}
 
 

@@ -1,5 +1,5 @@
 {
-	" PERSONA": [
+	"PERSONA": [
 		{
 			"id": 1,
 			"clave": "321",
@@ -164,10 +164,11 @@
 	{
     
     	  "id" : 2,
-    	  " FECHAPREGUNTA" : "2020-03-20",
-    	   "pregunta" : "Aun se enceuntra disponible ?",
+    	  " FECHAPREGUNTA" : "2020-01-11",
+    	   "pregunta" : "Estoy disponible en las mañanas",
     	   "id_persona" : 2,
-    	   "id_vehiculo" : 2
+    	   "id_vehiculo" : 1,
+    	   "id_pregunta" : 1
 	},
 	
 	{
@@ -183,16 +184,17 @@
     
     	  "id" : 4,
     	  " FECHAPREGUNTA" : "2020-06-02",
-    	   "pregunta" : "que día esta disponible para ver el carro ?",
-    	   "id_persona" : 1,
-    	   "id_vehiculo" : 4
+    	   "pregunta" : "sí, los tiene todos al día",
+    	   "id_persona" : 2,
+    	   "id_vehiculo" : 3,
+    	   "id_pregunta" : 3
 	},
 	
 	{
     
     	  "id" : 5,
     	  " FECHAPREGUNTA" : "2020-02-18",
-    	   "pregunta" : "La moto tiene tecnomecanica ?",
+    	   "pregunta" : " En que día podemos ver en carro",
     	   "id_persona" : 5,
     	   "id_vehiculo" : 5
 	},
@@ -201,9 +203,10 @@
     
     	  "id" : 6,
     	  " FECHAPREGUNTA" : "2020-08-10",
-    	   "pregunta" : "Me interesa ver el camion",
+    	   "pregunta" : "Se lo puedo mostrar en sabado",
     	   "id_persona" : 6,
-    	   "id_vehiculo" : 6
+    	   "id_vehiculo" : 5,
+    	   "id_pregunta" : 5
 	}
 	
 	
@@ -242,15 +245,33 @@
 	}
 	],
 	
+	"FAVORITO" : [
+	{
+	"id_persona" : 2,
+	"id_vehiculo" : 1
+	},
+	
+	{
+	"id_persona" : 2,
+	"id_vehiculo" : 3
+	},
+	
+	{
+	"id_persona" : 5,
+	"id_vehiculo" : 4
+	},
+	
+	{
+	"id_persona" : 6,
+	"id_vehiculo" : 5
+	}
+	
+	],
+	
 	"CARACTERISTICAS" : [
 	{
 	"id" : 1,
 	"nombre" : "GPS"
-	},
-	
-	{
-	"id" : 1,
-	"nombre" : "Calefacción"
 	},
 	
 	{
@@ -280,153 +301,180 @@
 	
 	],
 	
-	"VEHICULOCARACTERISTICAS" : [
+	"VEHICULO_CARACTERISTICAS" : [
 	{
 	
-	   "id_vehiculo" : 1,
-      "id_caracteristicas" : 1
+	   " vehiculo_id" : 1,
+      "caracteristicas_id" : 1
       	
 	},
 	
 	{
 	
-	   "id_vehiculo" : 2,
-      "id_caracteristicas" : 2
+	   " vehiculo_id" : 2,
+      "caracteristicas_id" : 2
       	
 	},
 	
 	{
 	
-	   "id_vehiculo" : 3,
-      "id_caracteristicas" : 3
+	   " vehiculo_id" : 3,
+      "caracteristicas_id" : 3
       	
 	},
 	
 	{
 	
-	   "id_vehiculo" : 4,
-      "id_caracteristicas" : 4
+	   " vehiculo_id" : 4,
+      "caracteristicas_id" : 4
       	
 	},
 	
 	{
 	
-	   "id_vehiculo" : 5,
-      "id_caracteristicas" : 5
+	   " vehiculo_id" : 5,
+      "caracteristicas_id" : 5
       	
 	},
 	
 	{
 	
-	   "id_vehiculo" : 6,
-      "id_caracteristicas" : 6
+	   " vehiculo_id" : 6,
+      "caracteristicas_id" : 6
       	
 	}
 	
 	],
 	
 	
-	"FOTOVEHICULO" : [
+	" VEHICULO_FOTOS" : [
 	{
 	  
-	  "id" : 1,
-	  "url" : "foto1",
-	  "id_vehiculo" : 1
+	  "Vehiculo_id" : 1,
+	  "url" : "foto1"
+	  
 	},
 	
 	{
 	  
-	  "id" : 2,
-	  "url" : "foto2",
-	  "id_vehiculo" : 2
+	  "Vehiculo_id" : 2,
+	  "url" : "foto2"
 	},
 	
 	{
 	  
-	  "id" : 3,
-	  "url" : "foto3",
-	  "id_vehiculo": 3
+	  "Vehiculo_id" : 3,
+	  "url" : "foto3"
 	}
 	
 	],
 	
-	"MODELO" : [
-	
+	"MARCA" : [ 
 	{
 	"id" : 1,
-	"nombre" : "123",
-	"id_marca" : 3
+	"nombre" : "BMW"
 	
 	},
-	
-	{
-	"id" : 1,
-	"nombre" : "MODELO",
-	"id_marca" : 1
-	
-	},
-	
-	{
+	 
+	 {
 	"id" : 2,
-	"nombre" : "MAZDA",
-	"id_marca" : 2
+	"nombre" : "FORD"
 	
 	},
 	
 	{
 	"id" : 3,
-	"nombre" : "volKSWAGEN",
-	"id_marca" : 3
+	"nombre" : "MAZDA"
 	
 	},
 	
 	{
 	"id" : 4,
-	"nombre" : "CHEVROLET",
+	"nombre" : "RENAULT"
+	
+	},
+	
+	{
+	"id" : 5,
+	"nombre" : "CHEVROLET"
+	
+	},
+	
+	{
+	"id" : 6,
+	"nombre" : "KIA"
+	
+	}
+	
+	
+	],
+	
+	
+	"MODELO" : [
+	
+	{
+	"id" : 1,
+	"nombre" : "Active Tourer",
+	"id_marca" : 3
+	
+	},
+	
+	{
+	"id" : 2,
+	"nombre" : "Ford KA+ 5 puertas",
+	"id_marca" : 1
+	
+	},
+	
+	{
+	"id" : 3,
+	"nombre" : "Mazda2",
+	"id_marca" : 2
+	
+	},
+	
+	{
+	"id" : 4,
+	"nombre" : "Duster",
+	"id_marca" : 3
+	
+	},
+	
+	{
+	"id" : 5,
+	"nombre" : "SPARK GT",
 	"id_marca" : 4
 	
 	},
 	
 	{
 	"id" : 5,
-	"nombre" : "KIA",
+	"nombre" : "Kia Optima Hibrido",
 	"id_marca" : 5
-	
-	},
-	
-	{
-	"id" : 6,
-	"nombre" : "FORD",
-	"id_marca" : 6
 	
 	}
 	
 	], 
 	
-	"TELEFONO" : [
+	"PERSONA_TELEFONOS" : [
 	{
 	
-	"id" : 1,
-	"clave" : "123",
-	"valor" : 1, 
-	"id_persona" : 1
+	"Persona_id" : 1,
+	" TELEFONOS" : 1234
 	},
 	
 	{
 	
-	"id" : 2,
-	"clave" : "124",
-	"valor" : 2, 
-	"id_persona": 2
+	"Persona_id" : 2,
+	"TELEFONOS" : 5678
 	},
 	
 	{
 	
-	"id" : 3,
-	"clave" : "125",
-	"valor" : 3, 
-	"id_persona" :3
+	"Persona_id" : 3,
+	"TELEFONOS" : 65236
 	}
 	]
+	
 	
 }
