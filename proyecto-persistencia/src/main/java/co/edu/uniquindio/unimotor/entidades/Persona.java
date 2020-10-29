@@ -17,8 +17,16 @@ import javax.persistence.*;
 	@NamedQuery(name = "LISTA_FAVORITOS_PERSONA2", query = "select f.vehiculo, p.nombre from Persona p, IN (p.favorito) f where p.email = :email"),
 	@NamedQuery(name = "LISTA_FAVORITOS_PERSONA_JOIN", query = "select f.vehiculo, p.nombre from Persona p join p.favorito f where p.email = :email"),
 	@NamedQuery(name = "LISTA_VEHICULOS_VENTA", query = "select p.email, v from  Persona p left join p.vehiculo v"),
-	@NamedQuery(name = "LISTA_CIUDAD_PERSONAS", query = "select new co.edu.uniquindio.unimotor.dto.ConsultaPerssonasCiudadDTO (p.nombre, p.email, p.direccion) from Persona p where p.ciudad.nombre = :nombre")
+	@NamedQuery(name = "LISTA_CIUDAD_PERSONAS", query = "select new co.edu.uniquindio.unimotor.dto.ConsultaPerssonasCiudadDTO (p.nombre, p.email, p.direccion) from Persona p where p.ciudad.nombre = :nombre"),
+	@NamedQuery(name = "LISTA_PERSONAS_ORDENADA", query = "select p from Persona p order by p.nombre asc"),
+	@NamedQuery(name = "BUSCAR_POR_EMAIL", query = "select p from Persona p where p.email = :email"),
+	@NamedQuery(name = "CANTIDAD_PERSONAS", query = "select count(p) from Persona p ")
+//	@NamedQuery(name = "LISTA_PERSONAS_GMAIL", query = "select p from Persona p.email like = :email")
+	
 })
+
+
+
 
 public class Persona implements Serializable {
 
@@ -39,10 +47,6 @@ public class Persona implements Serializable {
 	
 	@Column(name="direccion")
 	private String direccion;
-	
-	@Column(name="genero")
-	@Enumerated(EnumType.STRING)
-	private Genero genero;
 	
 	@ElementCollection
 	private List<Integer> telefonos; 
@@ -67,6 +71,21 @@ public class Persona implements Serializable {
 	}   
 	
 	
+	
+
+	public Persona(String nombre, String email, String clave, String direccion, List<Integer> telefonos,
+			Ciudad ciudad) {
+		super();
+		this.nombre = nombre;
+		this.email = email;
+		this.clave = clave;
+		this.direccion = direccion;
+		this.telefonos = telefonos;
+		this.ciudad = ciudad;
+	}
+
+
+
 
 	public Ciudad getCiudad() {
 		return ciudad;
@@ -77,19 +96,6 @@ public class Persona implements Serializable {
 	public void setCiudad(Ciudad ciudad) {
 		this.ciudad = ciudad;
 	}
-
-
-
-	public Persona(Integer id, String nombre, String email, String clave, String direccion) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.email = email;
-		this.clave = clave;
-		this.direccion = direccion;
-	}
-
-
 
 	public Integer getId() {
 		return this.id;
@@ -127,22 +133,6 @@ public class Persona implements Serializable {
 		this.direccion = direccion;
 	}
 	
-	
-
-
-
-	public Genero getGenero() {
-		return genero;
-	}
-
-
-
-	public void setGenero(Genero genero) {
-		this.genero = genero;
-	}
-
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;

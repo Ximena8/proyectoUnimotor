@@ -3,13 +3,15 @@ package co.edu.uniquindio.unimotor.entidades;
 import java.io.Serializable;
 import java.lang.Integer;
 
+import javax.persistence.Embeddable;
+
 /**
  * ID class for entity: Favorito
  *
  */ 
+@Embeddable
 public class FavoritoPK  implements Serializable {   
-   
-	         
+ 
 	private Integer idPersona;         
 	private Integer idVehiculo;
 	private static final long serialVersionUID = 1L;

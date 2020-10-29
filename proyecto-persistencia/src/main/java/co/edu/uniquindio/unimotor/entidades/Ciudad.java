@@ -18,6 +18,7 @@ public class Ciudad implements Serializable {
 	  
 	@Id
 	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column(name="nombre", length = 200, nullable = false)

@@ -1,0 +1,363 @@
+{
+	"PERSONA": [
+		{
+			"id": 1,
+			"clave": "321",
+			"direccion": "calle 26 norte casa 950",
+			"email": "ximena@email.com",
+			"nombre": "xIMENA Silva",
+			"id_ciudad": 6
+		},
+		{
+			"id": 2,
+			"clave": "456",
+			"direccion": "calle 26 norte casa 950",
+			"email": "juan@email.com",
+			"nombre": "Juan Paez",
+			"id_ciudad": 5
+		},
+		{
+			"id": 3,
+			"clave": "398",
+			"direccion": "calle 26 norte casa 950",
+			"email": "sindya@email.com",
+			"genero": "FEMENINO",
+			"nombre": "Sindy Cuatin",
+			"id_ciudad": 4
+		},
+		{
+			"id": 4,
+			"clave": "754",
+			"direccion": "calle 26 norte casa 950",
+			"email": "maria@email.com",
+			"genero": "FEMENINO",
+			"nombre": "maria hernandez",
+			"id_ciudad": 3
+		},
+		{
+			"id": 5,
+			"clave": "956",
+			"direccion": "calle 26 norte casa 950",
+			"email": "daniel@email.com",
+			"nombre": "Daniel Velez",
+			"id_ciudad": 2
+		},
+		{
+			"id": 6,
+			"clave": "245",
+			"direccion": "calle 26 norte casa 950",
+			"email": "diego@email.com",
+			"nombre": "Diego Silva",
+			"id_ciudad": 1
+		}
+	],
+	"VEHICULO": [
+		{
+			"id": 1,
+			"anio": 2000,
+			"descripcion": "carro en excelentes condiciones",
+			"precio": 1000000,
+			"tipo_combustible": "GASOLINA",
+			"tipo_vehiculo": "CARRO",
+			"transmision": "MECANICO",
+			"vehiculoNuevo": "true",
+			"id_ciudad": 1,
+			"id_modelo": 1,
+			"id_persona": 1
+		},
+		{
+			"id": 2,
+			"anio": 2024,
+			"descripcion": " excelente ferrari",
+			"precio": 150000000000000000,
+			"tipo_combustible": "ELECTRICO",
+			"tipo_vehiculo": "CARRO",
+			"transmision": "AUTOMATICO",
+			"vehiculoNuevo": "TRUE",
+			"id_ciudad": 2,
+			"id_modelo": 2,
+			"id_persona": 2
+		},
+		{
+			"id": 3,
+			"anio": 1998,
+			"descripcion": "carro para repuestos",
+			"precio": 2000000,
+			"tipo_combustible": "GASOLINA",
+			"tipo_vehiculo": "CARRO",
+			"transmision": "MECANICO",
+			"vehiculoNuevo": "false",
+			"id_ciudad": 3,
+			"id_modelo": 3,
+			"id_persona": 3
+		},
+		{
+			"id": 4,
+			"anio": 2018,
+			"descripcion": "carro en buen estado",
+			"precio": 30000000,
+			"tipo_combustible": "GAS",
+			"tipo_vehiculo": "CARRO",
+			"transmision": "AUTOMATICO",
+			"vehiculoNuevo": "false",
+			"id_ciudad": 4,
+			"id_modelo": 4,
+			"id_persona": 4
+		},
+		{
+			"id": 5,
+			"anio": 2008,
+			"descripcion": "Carro en exceltes condiciones, sin seguro",
+			"precio": 2000000,
+			"tipo_combustible": "GASOLINA",
+			"tipo_vehiculo": "CARRO",
+			"transmision": "MECANICO",
+			"vehiculoNuevo": "false",
+			"id_ciudad": 5,
+			"id_modelo": 5,
+			"id_persona": 5
+		},
+		{
+			"id": 6,
+			"anio": 2017,
+			"descripcion": "Camioneta el buen estado",
+			"precio": 20000000,
+			"tipo_combustible": "GASOLINA",
+			"tipo_vehiculo": "CAMIONETA",
+			"transmision": "MECANICO",
+			"vehiculoNuevo": "false",
+			"id_ciudad": 6,
+			"id_modelo": 6,
+			"id_persona": 6
+		}
+	],
+	"PREGUNTA": [
+		{
+			"id": 1,
+			"FECHAPREGUNTA": "2020-01-10",
+			"pregunta": "En que horario puedo ver el vehiculo",
+			"id_persona": 1,
+			"id_vehiculo": 1
+		},
+		{
+			"id": 2,
+			"FECHAPREGUNTA": "2020-01-11",
+			"pregunta": "Estoy disponible en las mananas",
+			"id_persona": 2,
+			"id_vehiculo": 1,
+			"id_pregunta": 1
+		},
+		{
+			"id": 3,
+			"FECHAPREGUNTA": "2020-05-29",
+			"pregunta": "El carro tiene todos los documentos al dia ?",
+			"id_persona": 3,
+			"id_vehiculo": 3
+		},
+		{
+			"id": 4,
+			"FECHAPREGUNTA": "2020-06-02",
+			"pregunta": "si, los tiene todos al dia",
+			"id_persona": 2,
+			"id_vehiculo": 3,
+			"id_pregunta": 3
+		},
+		{
+			"id": 5,
+			"FECHAPREGUNTA": "2020-02-18",
+			"pregunta": " En que dia podemos ver en carro",
+			"id_persona": 5,
+			"id_vehiculo": 5
+		},
+		{
+			"id": 6,
+			"FECHAPREGUNTA": "2020-08-10",
+			"pregunta": "Se lo puedo mostrar en sabado",
+			"id_persona": 6,
+			"id_vehiculo": 5,
+			"id_pregunta": 5
+		}
+	],
+	"CIUDAD": [
+		{
+			"id": 1,
+			"nombre": "Medellin"
+		},
+		{
+			"id": 2,
+			"nombre": "Aremenia"
+		},
+		{
+			"id": 3,
+			"nombre": "Pereira"
+		},
+		{
+			"id": 4,
+			"nombre": "Cartagena"
+		},
+		{
+			"id": 5,
+			"nombre": "Cali"
+		},
+		{
+			"id": 6,
+			"nombre": "Bogota"
+		}
+	],
+	"FAVORITO": [
+		{
+			"id_persona": 2,
+			"id_vehiculo": 1
+		},
+		{
+			"id_persona": 2,
+			"id_vehiculo": 3
+		},
+		{
+			"id_persona": 5,
+			"id_vehiculo": 4
+		},
+		{
+			"id_persona": 6,
+			"id_vehiculo": 5
+		}
+	],
+	"CARACTERISTICAS": [
+		{
+			"id": 1,
+			"nombre": "GPS"
+		},
+		{
+			"id": 2,
+			"nombre": "Sistema Integrado de navegacion"
+		},
+		{
+			"id": 3,
+			"nombre": "Asientos de piel"
+		},
+		{
+			"id": 4,
+			"nombre": "Bluetooth"
+		},
+		{
+			"id": 5,
+			"nombre": "Puertos USB"
+		},
+		{
+			"id": 6,
+			"nombre": "Piloto automatico"
+		}
+	],
+	"VEHICULO_CARACTERISTICAS": [
+		{
+			"vehiculo_id": 1,
+			"caracteristicas_id": 1
+		},
+		{
+			"vehiculo_id": 2,
+			"caracteristicas_id": 2
+		},
+		{
+			"vehiculo_id": 3,
+			"caracteristicas_id": 3
+		},
+		{
+			"vehiculo_id": 4,
+			"caracteristicas_id": 4
+		},
+		{
+			"vehiculo_id": 5,
+			"caracteristicas_id": 5
+		},
+		{
+			"vehiculo_id": 6,
+			"caracteristicas_id": 6
+		}
+	],
+	"VEHICULO_FOTOS": [
+		{
+			"Vehiculo_id": 1,
+			"FOTOS": "foto1"
+		},
+		{
+			"Vehiculo_id": 2,
+			"FOTOS": "foto2"
+		},
+		{
+			"Vehiculo_id": 3,
+			"FOTOS": "foto3"
+		}
+	],
+	"MARCA": [
+		{
+			"id": 1,
+			"nombre": "BMW"
+		},
+		{
+			"id": 2,
+			"nombre": "FORD"
+		},
+		{
+			"id": 3,
+			"nombre": "MAZDA"
+		},
+		{
+			"id": 4,
+			"nombre": "RENAULT"
+		},
+		{
+			"id": 5,
+			"nombre": "CHEVROLET"
+		},
+		{
+			"id": 6,
+			"nombre": "KIA"
+		}
+	],
+	"MODELO": [
+		{
+			"id": 1,
+			"nombre": "Active Tourer",
+			"id_marca": 3
+		},
+		{
+			"id": 2,
+			"nombre": "Ford KA+ 5 puertas",
+			"id_marca": 1
+		},
+		{
+			"id": 3,
+			"nombre": "Mazda2",
+			"id_marca": 2
+		},
+		{
+			"id": 4,
+			"nombre": "Duster",
+			"id_marca": 3
+		},
+		{
+			"id": 5,
+			"nombre": "SPARK GT",
+			"id_marca": 4
+		},
+		{
+			"id": 6,
+			"nombre": "Kia Optima Hibrido",
+			"id_marca": 5
+		}
+	],
+	"PERSONA_TELEFONOS": [
+		{
+			"Persona_id": 1,
+			"TELEFONOS": 1234
+		},
+		{
+			"Persona_id": 2,
+			"TELEFONOS": 5678
+		},
+		{
+			"Persona_id": 3,
+			"TELEFONOS": 65236
+		}
+	]
+}

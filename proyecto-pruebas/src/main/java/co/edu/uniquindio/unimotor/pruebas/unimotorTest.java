@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unimotor.pruebas;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -266,6 +267,142 @@ public class unimotorTest {
 		
 		
 	}
+
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"unimotor.json"})
+	public void listaVehiculosCaracteristicasTest() {
+		
+		ArrayList<String> lista = new ArrayList<String>();
+		lista.add("Bluetooth");
+		lista.add("Piloto automatico");
+		lista.add("Sistema Integrado de navegacion");
+		
+		
+		TypedQuery<Vehiculo> q = entityManager.createNamedQuery("LISTA_VEHICULOS_CARACTERISTICAS", Vehiculo.class);
+		q.setParameter("lista", lista);
+		
+		List<Vehiculo> l =q.getResultList();
+		
+		for(Vehiculo vehiculo : l ) {
+			 
+			 System.out.println(vehiculo);
+		 }
+			
+			
+		
+	}
 	
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"unimotor.json"})
+	public void listaVehiculosTodasCaracteristicasTest() {
+		
+		ArrayList<Integer> lista = new ArrayList<Integer>();
+		lista.add(1);
+		lista.add(2);
+		lista.add(4);
+		
+		
+		TypedQuery<Vehiculo> q = entityManager.createNamedQuery("LISTA_VEHICULOS_TODAS_CARACTERISTICAS", Vehiculo.class);
+		q.setParameter("lista", lista);
+		q.setParameter("tamLista", lista.size());
+		
+		List<Vehiculo> l =q.getResultList();
+		
+		for(Vehiculo vehiculo : l ) {
+			 
+			 System.out.println(vehiculo);
+		 }
+			
+			
+		
+	}
+	
+	
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"unimotor.json"})
+	public void listaPersonasCorreoTest() {
+		
+		
+		TypedQuery<Persona> q = entityManager.createNamedQuery("LISTA_PERSONAS_GMAIL", Persona.class);
+		q.setParameter("correo", "%@gmail.%");
+		
+		List<Persona> l =q.getResultList();
+		
+		for(Persona persona : l ) {
+			 
+			 System.out.println(persona);
+		 }
+			
+			
+		
+	}
+	
+	
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"unimotor.json"})
+	public void cantidadVehiculosTipoTest() {
+		
+		TypedQuery <Object[]>q = entityManager.createNamedQuery("CANTIDAD_VEHICULOS_POR_TIPO", Object[].class);
+		
+		List<Object[]> l = q.getResultList();
+		
+	 for(Object[] vehiculo : l ) {
+		 
+		 System.out.println(vehiculo[0]+"---"+vehiculo[1]);
+	 }
+		
+		
+	}
+	
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"unimotor.json"})
+	public void vehiculoMasCostosCiudadTest() {
+		
+		TypedQuery <Vehiculo>q = entityManager.createNamedQuery("VEHICULO_MAS_COSTOSO_CIUDAD", Vehiculo.class);
+		q.setParameter("ciudad","Medellin");
+		
+		List<Vehiculo> l = q.getResultList();
+		
+	 for(Vehiculo vehiculo : l ) {
+		 
+		 System.out.println(vehiculo);
+	 }
+		
+		
+	}
+	
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"unimotor.json"})
+	public void masCostosoPorMarcaTest() {
+		
+		TypedQuery <Object[]>q = entityManager.createNamedQuery("VALOR_MAS_COSTOSO_POR_MARCA", Object[].class);
+		
+		List<Object[]> l = q.getResultList();
+		
+	 for(Object[] vehiculo : l ) {
+		 
+		 System.out.println(vehiculo[0]+"---"+vehiculo[1]);
+	 }
+		
+		
+	}
+	
+	
+
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"unimotor.json"})
+	public void cantidadDePersonasTest() throws Exception {
+		//TypedQuery<Long>q = entityManager.createNamedQuery("CANTIDAD_PERSONAS", long.class);
+		Query q = entityManager.createNamedQuery("CANTIDAD_PERSONAS");
+		System.out.println(q.getSingleResult() );
+		
+	}
 }
 

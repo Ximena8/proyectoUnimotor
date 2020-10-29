@@ -19,7 +19,9 @@ public class Modelo implements Serializable {
 	@Id
 	
 	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	@Column(name="nombre", length = 200, nullable = false)
 	private String nombre;
 	
@@ -34,7 +36,9 @@ public class Modelo implements Serializable {
 
 	public Modelo() {
 		super();
-	}   
+	}  
+	
+	
 	public Integer getId() {
 		return this.id;
 	}

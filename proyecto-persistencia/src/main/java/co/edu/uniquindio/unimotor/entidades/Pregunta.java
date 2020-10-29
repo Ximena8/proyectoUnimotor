@@ -19,9 +19,12 @@ public class Pregunta implements Serializable {
 	   
 	@Id
 	@Column(name="id",nullable = false )
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="pregunta", length = 200, nullable = false)
+	
+	@Column(name="pregunta", length = 200)
 	private String pregunta;
+	
 	@Temporal(TemporalType.TIMESTAMP )
 	private Date fechaPregunta;
 	
@@ -34,7 +37,7 @@ public class Pregunta implements Serializable {
 	private Vehiculo vehiculo;
 	
 	@ManyToOne()
-	@JoinColumn(name = "id_pregunta", nullable = false) 
+	@JoinColumn(name = "id_pregunta") 
 	private Pregunta Pregunta;
 	
 	
@@ -95,6 +98,12 @@ public class Pregunta implements Serializable {
 
 	public void setVehiculo(Vehiculo vehiculo) {
 		this.vehiculo = vehiculo;
+	}
+
+	
+
+	public void setPregunta(Pregunta pregunta) {
+		Pregunta = pregunta;
 	}
 
 

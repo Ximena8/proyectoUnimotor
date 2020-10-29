@@ -67,5 +67,7 @@
 	<modules>
 		<module>proyecto-persistencia</module>
 		<module>proyecto-pruebas</module>
+		<module>proyecto-ear</module>
+		<module>proyecto-negocio</module>
 	</modules>
 </project>
