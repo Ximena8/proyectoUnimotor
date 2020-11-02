@@ -140,5 +140,11 @@ public class UnimotorEJB implements UnimotorEJBRemote {
 		
 	}
 
+	@Override
+	public Ciudad obtenerCiudad(Integer id) {
+		
+		return entityManager.find(Ciudad.class, id);
+	}
+
 
 }

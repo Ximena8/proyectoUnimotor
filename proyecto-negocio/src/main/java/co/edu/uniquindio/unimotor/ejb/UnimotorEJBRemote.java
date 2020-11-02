@@ -34,4 +34,6 @@ public interface UnimotorEJBRemote {
 	List<Modelo> obtenerListaModelo();
 	
 	void enviarEmail(String asunto, String mensaje, String destinatario)throws Exception;
+	
+	Ciudad obtenerCiudad(Integer id);
 }

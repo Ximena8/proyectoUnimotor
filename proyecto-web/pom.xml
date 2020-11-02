@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>co.edu.uniquindio.grid</groupId>
+		<artifactId>proyecto-unimotor</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>proyecto-web</artifactId>
+	<packaging>war</packaging>
+	<name>Proyecto web</name>
+	<description>Proyecto que proporciona la interfaz gráfica de de usuario web para los clientes del aplicativo</description>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>8.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>8.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>javax.faces-api</artifactId>
+			<version>2.3</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>co.edu.uniquindio.grid</groupId>
+			<artifactId>proyecto-persistencia</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>co.edu.uniquindio.grid</groupId>
+			<artifactId>proyecto-negocio</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+
+			<scope>provided</scope>
+		</dependency>
+
+
+	</dependencies>
+
+</project>

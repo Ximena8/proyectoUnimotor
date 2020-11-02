@@ -5,6 +5,7 @@ import java.lang.String;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 /**
  * Entity implementation class for Entity: Persona
@@ -36,14 +37,19 @@ public class Persona implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	// No espacios vacios
+	@NotBlank(message = "El nombre no puede ser vacio")
 	@Column(name="nombre", length = 200, nullable = false)
 	private String nombre;
 	
+	@NotBlank(message = "El email no puede ser vacio")
 	@Column(name="email", nullable = false, length = 200, unique = true)
 	private String email;
 	
+	@NotBlank(message = "La clave no puede ser vacia")
 	@Column(name="clave", length = 100, nullable = false)
 	private String clave;
+	
 	
 	@Column(name="direccion")
 	private String direccion;

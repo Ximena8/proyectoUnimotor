@@ -20,6 +20,13 @@
 			<version>0.0.1-SNAPSHOT</version>
 			<type>ejb</type>
 		</dependency>
+
+		<dependency>
+			<groupId>co.edu.uniquindio.grid</groupId>
+			<artifactId>proyecto-web</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>war</type>
+		</dependency>
 	</dependencies>
 
 </project>

@@ -8,5 +8,8 @@
         <dependent-module archiveName="proyecto-persistencia.jar" deploy-path="/lib" handle="module:/resource/proyecto-persistencia/proyecto-persistencia">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="proyecto-web.war" deploy-path="/" handle="module:/resource/proyecto-web/proyecto-web">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     </wb-module>
 </project-modules>
