@@ -4,9 +4,13 @@ import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 /**
  * Entity implementation class for Entity: Vehiculo
@@ -46,6 +50,10 @@ import javax.persistence.*;
 
 })
 
+/*
+ * Listo, el error era rpo el name de un atributo, ya que no puede tener espacios en blanco.gracias profe
+ * Listo, cualquier otra cosa me escribe lsito profe muchas gracias
+ */
 
 public class Vehiculo implements Serializable {
 
@@ -55,19 +63,58 @@ public class Vehiculo implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name="precio")
-	private Integer precio;
 	
-	@Column(name="descripcion", length = 200, nullable = false)
-	private String descripcion;
-	
+	@Positive
 	@Column(name="anio", nullable = false)
 	private int anio;
 	
-	@Column(name="vehiculoNuevo",nullable = false)
+	
+	@Positive
+	@Column(name="cilindrada", nullable = false)
+	private int cilindrada;
+	
+	@NotBlank
+	@Column(name="color", length = 200, nullable = false)
+	private String color;
+	
+	@NotBlank
+	@Lob
+	@Column(name="descripcion", length = 200, nullable = false)
+	private String descripcion;
+	
+	@Temporal(TemporalType.TIMESTAMP )
+	@Column(name="fecha_publicacion", nullable = false)
+	private Date fechaPublicacion;
+	
+
+	@Positive
+	@Column(name="kilometraje", nullable = false)
+	private Integer kilometraje;
+	
+	@NotBlank
+	@Column(name="nombre_publicacion", length = 200, nullable = false)
+	private String nombrePublicacion;
+	
+	
+	@Positive
+	@Column(name="numero_puertas", nullable = false)
+	private Integer numeroPuertas;
+	
+	@NotNull
+	@Column(name="vehiculo_nuevo",nullable = false) //los names de los atributos no pueden tener espacios en blanco
 	private boolean vehiculoNuevo;
 
+	
+	@Column(name="placa")
+	private String placa;
+	
+	@NotNull
+	@Positive
+	@Column(name="precio", nullable=false)
+	private double precio;
+	
 	@ElementCollection
+	@JoinColumn( nullable = false)
 	private ArrayList<String> fotos; 
 
 	@ManyToMany
@@ -94,15 +141,17 @@ public class Vehiculo implements Serializable {
 	@JoinColumn(name = "id_modelo", nullable = false)
 	private Modelo modelo;
 
+	
 	@Enumerated(EnumType.STRING)
 	@Column(name="tipo_combustible",nullable = false)
 	private TipoCombustible tipoCombustible;
 	
-
+    
 	@Enumerated(EnumType.STRING)
 	@Column(name="tipo_vehiculo",nullable = false)
 	private TipoVehiculo tipoVehiculo;
 	
+   
 	@Enumerated(EnumType.STRING)
 	@Column(name="transmision",nullable = false)
 	private Transmision transmision;
@@ -131,11 +180,11 @@ public class Vehiculo implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}   
-	public Integer getPrecio() {
+	public double getPrecio() {
 		return this.precio;
 	}
 
-	public void setPrecio(Integer precio) {
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}   
 	public String getDescripcion() {
@@ -229,6 +278,130 @@ public class Vehiculo implements Serializable {
 
 	public void setFotos(ArrayList<String> fotos) {
 		this.fotos = fotos;
+	}
+
+	
+	
+
+	public int getCilindrada() {
+		return cilindrada;
+	}
+
+
+	public void setCilindrada(int cilindrada) {
+		this.cilindrada = cilindrada;
+	}
+
+
+	public String getColor() {
+		return color;
+	}
+
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+
+	public Date getFechaPublicacion() {
+		return fechaPublicacion;
+	}
+
+
+	public void setFechaPublicacion(Date fechaPublicacion) {
+		this.fechaPublicacion = fechaPublicacion;
+	}
+
+
+	public Integer getKilometraje() {
+		return kilometraje;
+	}
+
+
+	public void setKilometraje(Integer kilometraje) {
+		this.kilometraje = kilometraje;
+	}
+
+     
+	
+	public String getNombrePublicacion() {
+		return nombrePublicacion;
+	} 
+
+   
+	public void setNombrePublicacion(String nombrePublicacion) {
+		this.nombrePublicacion = nombrePublicacion;
+	}
+
+
+	public Integer getNumeroPuertas() {
+		return numeroPuertas;
+	}
+
+
+	public void setNumeroPuertas(Integer numeroPuertas) {
+		this.numeroPuertas = numeroPuertas;
+	}
+
+
+	public boolean isVehiculoNuevo() {
+		return vehiculoNuevo;
+	}
+
+
+	public void setVehiculoNuevo(boolean vehiculoNuevo) {
+		this.vehiculoNuevo = vehiculoNuevo;
+	}
+
+
+	public String getPlaca() {
+		return placa;
+	}
+
+
+	public void setPlaca(String placa) {
+		this.placa = placa;
+	}
+
+
+	public List<Favorito> getFavorito() {
+		return favorito;
+	}
+
+
+	public void setFavorito(List<Favorito> favorito) {
+		this.favorito = favorito;
+	}
+
+	
+
+	public List<Caracteristicas> getCaracteristicas() {
+		return caracteristicas;
+	}
+
+
+	public void setCaracteristicas(List<Caracteristicas> caracteristicas) {
+		this.caracteristicas = caracteristicas;
+	}
+
+
+	public List<Pregunta> getPregunta() {
+		return pregunta;
+	}
+
+
+	public void setPregunta(List<Pregunta> pregunta) {
+		this.pregunta = pregunta;
+	}
+
+
+	public Transmision getTransmision() {
+		return transmision;
+	}
+
+
+	public void setTransmision(Transmision transmision) {
+		this.transmision = transmision;
 	}
 
 

@@ -19,6 +19,11 @@ public class EjemploBean {
 		atr2=aux;
 	}
 	
+//	public String irARegistroPersona() {
+//		//validaciones, eventos
+//		return "registrarPersona";
+//	}
+//	
 	public String getAtr1() {
 		return atr1;
 	}

@@ -37,12 +37,12 @@ public class PersonaBean {
 			unimotorEJB.registrarPersona(persona);
 			
 			FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "¡ Registro existoso !");
-			FacesContext.getCurrentInstance().addMessage("mensajes_registro_persona", msj);
+			FacesContext.getCurrentInstance().addMessage("registro_persona", msj);
 			
 			
 		} catch (Exception e) {
 			FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
-			FacesContext.getCurrentInstance().addMessage("mensajes_registro_persona", msj);
+			FacesContext.getCurrentInstance().addMessage("registro_persona", msj);
 			
 		}
 		

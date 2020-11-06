@@ -8,6 +8,9 @@ import co.edu.uniquindio.unimotor.entidades.Caracteristicas;
 import co.edu.uniquindio.unimotor.entidades.Ciudad;
 import co.edu.uniquindio.unimotor.entidades.Modelo;
 import co.edu.uniquindio.unimotor.entidades.Persona;
+import co.edu.uniquindio.unimotor.entidades.TipoCombustible;
+import co.edu.uniquindio.unimotor.entidades.TipoVehiculo;
+import co.edu.uniquindio.unimotor.entidades.Transmision;
 import co.edu.uniquindio.unimotor.entidades.Vehiculo;
 import co.edu.uniquindio.unimotor.excepcion.VehiculoInexistenteException;
 
@@ -36,4 +39,15 @@ public interface UnimotorEJBRemote {
 	void enviarEmail(String asunto, String mensaje, String destinatario)throws Exception;
 	
 	Ciudad obtenerCiudad(Integer id);
+	
+	List<TipoVehiculo>  obtenerListaTiposVehiculos();
+	
+	List<TipoCombustible> obtenerListaTiposCombustible();
+	
+	List<Transmision> obtenerListaTransmision();
+	
+	Persona obtenerPersona(Integer id);
+	
+	Modelo obtenerModelo(Integer id);
+	
 }

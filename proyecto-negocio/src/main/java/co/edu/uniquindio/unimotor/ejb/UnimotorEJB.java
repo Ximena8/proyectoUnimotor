@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unimotor.ejb;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -12,6 +13,9 @@ import co.edu.uniquindio.unimotor.entidades.Caracteristicas;
 import co.edu.uniquindio.unimotor.entidades.Ciudad;
 import co.edu.uniquindio.unimotor.entidades.Modelo;
 import co.edu.uniquindio.unimotor.entidades.Persona;
+import co.edu.uniquindio.unimotor.entidades.TipoCombustible;
+import co.edu.uniquindio.unimotor.entidades.TipoVehiculo;
+import co.edu.uniquindio.unimotor.entidades.Transmision;
 import co.edu.uniquindio.unimotor.entidades.Vehiculo;
 import co.edu.uniquindio.unimotor.excepcion.VehiculoInexistenteException;
 
@@ -75,13 +79,14 @@ public class UnimotorEJB implements UnimotorEJBRemote {
 			throw new Exception("Los datos de autenticaión son incorrectos");
 		}
 
-	      return l.get(0);
+		return l.get(0);
 	}
 
 	@Override
 	public void registrarVehiculo(Vehiculo vehiculo) throws Exception {
-		// TODO Auto-generated method stub
-		
+		//		validar que no exista la placa en la bd
+		entityManager.persist(vehiculo);
+
 	}
 
 	@Override
@@ -92,28 +97,28 @@ public class UnimotorEJB implements UnimotorEJBRemote {
 
 	@Override
 	public void modificarVehiculo(Vehiculo vehiculo) throws VehiculoInexistenteException {
-		
+
 		Vehiculo buscado = entityManager.find(Vehiculo.class, vehiculo.getId());
-		
+
 		if(buscado==null) {
-			
+
 			throw new VehiculoInexistenteException("El vehiculo no esta registrado");
 		}
-		  entityManager.merge(vehiculo);
+		entityManager.merge(vehiculo);
 	}
 
 	@Override
 	public void eliminarVehiculo(Vehiculo vehiculo) throws VehiculoInexistenteException {
-	
-		
+
+
 		Vehiculo buscado = entityManager.find(Vehiculo.class, vehiculo.getId());
-		
+
 		if(buscado==null) {
-			
+
 			throw new VehiculoInexistenteException("El vehiculo no esta registrado");
 		}
-		  entityManager.remove(vehiculo);
-		
+		entityManager.remove(vehiculo);
+
 	}
 
 	@Override
@@ -137,13 +142,41 @@ public class UnimotorEJB implements UnimotorEJBRemote {
 	@Override
 	public void enviarEmail(String asunto, String mensaje, String destinatario) throws Exception {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public Ciudad obtenerCiudad(Integer id) {
-		
+
 		return entityManager.find(Ciudad.class, id);
+	}
+
+	@Override
+	public List<TipoVehiculo> obtenerListaTiposVehiculos() {
+
+		return Arrays.asList(TipoVehiculo.values() );
+	}
+
+	@Override
+	public List<TipoCombustible> obtenerListaTiposCombustible() {
+		return Arrays.asList(TipoCombustible.values() );
+	}
+
+	@Override
+	public List<Transmision> obtenerListaTransmision() {
+		return Arrays.asList(Transmision.values() );
+	}
+
+	@Override
+	public Persona obtenerPersona(Integer id) {
+
+		return entityManager.find(Persona.class, id);
+	}
+
+	@Override
+	public Modelo obtenerModelo(Integer id) {
+
+		return entityManager.find(Modelo.class, id);
 	}
 
 

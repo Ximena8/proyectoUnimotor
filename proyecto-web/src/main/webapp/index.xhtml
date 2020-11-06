@@ -10,12 +10,32 @@
 </h:head>
 <h:body>
 
-	<h1>#{holaMundoBean.mensaje}</h1>
+	<header>
+	<div>icono de la página</div>
+	<div>
+		<h:form>
+			<ul>
+				<li><h:commandLink action="registrarPersona?faces-redirect=true"
+						value="Registrar Persona" /></li>
+						
+						<li><h:commandLink action="registrarVehiculo?faces-redirect=true"
+						value="Registrar nuevo vehículo" /></li>
+						
+				<li><h:commandLink action="cambio" value="Página de ejemplo" /></li>
+				
+			<!-- <li><h:commandLink action="#{EjemploBean.irARegistroPersona}" value="" /></li> -->	
+			</ul>
+		</h:form>
+	</div>
+	</header>
 
-	<h1>Hola mundo by Ximena Silva</h1>
-	
-	<p:outputLabel for="popup" value="Popup:" />
-	<p:datePicker id="popup"/>
+	<section>
+	<div>Lista de los vehículos, más populares o buscados</div>
+	</section>
+
+	<footer>
+	<p>Unimotor-2020</p>
+	</footer>
 
 </h:body>
 </html>

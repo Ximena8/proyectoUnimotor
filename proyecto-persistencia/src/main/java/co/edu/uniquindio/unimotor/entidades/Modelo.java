@@ -53,5 +53,27 @@ public class Modelo implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+
+	public Marca getMarca() {
+		return marca;
+	}
+
+
+	public void setMarca(Marca marca) {
+		this.marca = marca;
+	}
+
+
+	public List<Vehiculo> getVehiculo() {
+		return vehiculo;
+	}
+
+
+	public void setVehiculo(List<Vehiculo> vehiculo) {
+		this.vehiculo = vehiculo;
+	}
+	
+	
    
 }

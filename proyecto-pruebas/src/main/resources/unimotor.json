@@ -21,7 +21,6 @@
 			"clave": "398",
 			"direccion": "calle 26 norte casa 950",
 			"email": "sindya@email.com",
-			"genero": "FEMENINO",
 			"nombre": "Sindy Cuatin",
 			"id_ciudad": 4
 		},
@@ -30,7 +29,6 @@
 			"clave": "754",
 			"direccion": "calle 26 norte casa 950",
 			"email": "maria@email.com",
-			"genero": "FEMENINO",
 			"nombre": "maria hernandez",
 			"id_ciudad": 3
 		},

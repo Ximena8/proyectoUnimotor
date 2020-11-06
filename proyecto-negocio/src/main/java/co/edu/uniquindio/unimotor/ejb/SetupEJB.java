@@ -14,6 +14,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import co.edu.uniquindio.unimotor.entidades.Ciudad;
+import co.edu.uniquindio.unimotor.entidades.Marca;
+import co.edu.uniquindio.unimotor.entidades.Modelo;
 import co.edu.uniquindio.unimotor.entidades.Persona;
 
 /**
@@ -68,6 +70,15 @@ public class SetupEJB {
 
 			Persona p1 = new Persona("maria","maria@email.com", "123", "calle 28 norte", tels, c2);
 			entityManager.persist(p1);
+			
+			Marca marca = new Marca();
+			marca.setNombre("Chevrolet");
+			entityManager.persist(marca);
+
+			Modelo modelo = new Modelo();
+			modelo.setMarca(marca);
+			modelo.setNombre("Spark GT");
+			entityManager.persist(modelo);
 
 		}
 
