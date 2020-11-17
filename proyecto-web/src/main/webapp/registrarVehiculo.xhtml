@@ -17,17 +17,17 @@
 		<h:panelGrid columns="3" cellpadding="10">
 			<p:outputLabel for="nombre_publicacion" value="nombre publicaión:" />
 			<p:inputText id="nombre_publicacion"
-				value="#{vehiculoBean.vehiculo.nombrePublicacion}" />
+				value="#{vehiculoBean.vehiculo.nombrePublicacion}" required="true" />
 			<p:messages for="nombre_publicacion" />
 
 			<p:outputLabel for="precio_v" value="precio:" />
-			<p:inputText id="precio_v" value="#{vehiculoBean.vehiculo.precio}" />
+			<p:inputText id="precio_v" value="#{vehiculoBean.vehiculo.precio}" required="true" />
 			<p:messages for="precio_v" />
 
 			<p:outputLabel for="es_nuevo_v" value="Nuevo:" />
 			<p:selectBooleanButton id="es_nuevo_v"
 				value="#{vehiculoBean.vehiculo.vehiculoNuevo}" onLabel="SI"
-				offLabel="NO" />
+				offLabel="NO"  />
 			<p:messages for="es_nuevo_v" />
 
 			<p:outputLabel for="placa_v" value="placa:" />
@@ -35,41 +35,41 @@
 			<p:messages for="placa_v" />
 
 			<p:outputLabel for="anio_v" value="Año de fabricacón:" />
-			<p:inputText id="anio_v" value="#{vehiculoBean.vehiculo.anio}" />
+			<p:inputText id="anio_v" value="#{vehiculoBean.vehiculo.anio}" required="true" />
 			<p:messages for="anio_v" />
 
 			<p:outputLabel for="color_v" value="Color vehículo:" />
-			<p:inputText id="color_v" value="#{vehiculoBean.vehiculo.color}" />
+			<p:inputText id="color_v" value="#{vehiculoBean.vehiculo.color}" required="true" />
 			<p:messages for="color_v" />
 
-			<p:outputLabel for="cilindrada_v" value="Cilindrada:" />
+			<p:outputLabel for="cilindrada_v" value="Cilindrada:"  />
 			<p:inputText id="cilindrada_v"
-				value="#{vehiculoBean.vehiculo.cilindrada}" />
+				value="#{vehiculoBean.vehiculo.cilindrada}" required="true" />
 			<p:messages for="cilindrada_v" />
 
 			<p:outputLabel for="kilometraje_v" value="Kilometraje:" />
 			<p:inputText id="kilometraje_v"
-				value="#{vehiculoBean.vehiculo.kilometraje}" />
+				value="#{vehiculoBean.vehiculo.kilometraje}" required="true" />
 			<p:messages for="kilometraje_v" />
 
 
 			<p:outputLabel for="num_puertas_v" value="Número de puertas:" />
 			<p:inputText id="num_puertas_v"
-				value="#{vehiculoBean.vehiculo.numeroPuertas}" />
+				value="#{vehiculoBean.vehiculo.numeroPuertas}" required="true" />
 			<p:messages for="num_puertas_v" />
 
 			<p:outputLabel for="tipo_vehiculo" value="Tipo vehículo:" />
 			<p:selectOneMenu id="tipo_vehiculo"
-				value="#{vehiculoBean.vehiculo.tipoVehiculo}" >
+				value="#{vehiculoBean.vehiculo.tipoVehiculo}" required="true" >
 			<f:selectItem itemLabel="Seleccione un tipo"
 				noSelectionOption="true" />
-			<f:selectItems value="#{vehiculoBean.tiposVehiculos}" />
+			<f:selectItems value="#{vehiculoBean.tiposVehiculos}"  />
 				</p:selectOneMenu>
 			<p:messages for="tipo_vehiculo" />
 
 			<p:outputLabel for="tipo_combustible" value="Tipo combustible:" />
 			<p:selectOneMenu id="tipo_combustible"
-				value="#{vehiculoBean.vehiculo.tipoCombustible}" >
+				value="#{vehiculoBean.vehiculo.tipoCombustible}" required="true" >
 			<f:selectItem itemLabel="Seleccione un tipo"
 				noSelectionOption="true" />
 				<f:selectItems value="#{vehiculoBean.tiposCombustible}" />
@@ -78,7 +78,7 @@
 
 			<p:outputLabel for="transmision_v" value="Transmisión:" />
 			<p:selectOneMenu id="transmision_v"
-				value="#{vehiculoBean.vehiculo.transmision}" >
+				value="#{vehiculoBean.vehiculo.transmision}" required="true" >
 			<f:selectItem itemLabel="Seleccione un tipo"
 				noSelectionOption="true" />
 				<f:selectItems value="#{vehiculoBean.tiposTransmision}" />
@@ -88,7 +88,7 @@
 
 			<p:outputLabel for="descripcion_v" value="Descripción:" />
 			<p:inputTextarea id="descripcion_v" rows="10" cols="50"
-				value="#{vehiculoBean.vehiculo.descripcion}" />
+				value="#{vehiculoBean.vehiculo.descripcion}" required="true" />
 			<p:messages for="descripcion_v" />
 
 		</h:panelGrid>

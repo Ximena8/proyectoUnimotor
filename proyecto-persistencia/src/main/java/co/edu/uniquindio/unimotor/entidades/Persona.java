@@ -5,7 +5,9 @@ import java.lang.String;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  * Entity implementation class for Entity: Persona
@@ -21,8 +23,8 @@ import javax.validation.constraints.NotBlank;
 	@NamedQuery(name = "LISTA_CIUDAD_PERSONAS", query = "select new co.edu.uniquindio.unimotor.dto.ConsultaPerssonasCiudadDTO (p.nombre, p.email, p.direccion) from Persona p where p.ciudad.nombre = :nombre"),
 	@NamedQuery(name = "LISTA_PERSONAS_ORDENADA", query = "select p from Persona p order by p.nombre asc"),
 	@NamedQuery(name = "BUSCAR_POR_EMAIL", query = "select p from Persona p where p.email = :email"),
-	@NamedQuery(name = "CANTIDAD_PERSONAS", query = "select count(p) from Persona p ")
-//	@NamedQuery(name = "LISTA_PERSONAS_GMAIL", query = "select p from Persona p.email like = :email")
+	@NamedQuery(name = "CANTIDAD_PERSONAS", query = "select count(p) from Persona p "),
+	@NamedQuery(name = "LISTA_PERSONAS_GMAIL", query = "select p from Persona p where p.email like :correo")
 	
 })
 
@@ -38,20 +40,25 @@ public class Persona implements Serializable {
 	private Integer id;
 	
 	// No espacios vacios
+	
 	@NotBlank(message = "El nombre no puede ser vacio")
+	@Size( max=200)
 	@Column(name="nombre", length = 200, nullable = false)
 	private String nombre;
 	
+	@Email
+	@Size(min = 7, max=200, message = "El email debe tener entre 7 y 150 caracteres")
 	@NotBlank(message = "El email no puede ser vacio")
 	@Column(name="email", nullable = false, length = 200, unique = true)
 	private String email;
 	
 	@NotBlank(message = "La clave no puede ser vacia")
+	@Size( max=100)
 	@Column(name="clave", length = 100, nullable = false)
 	private String clave;
 	
-	
-	@Column(name="direccion")
+	@Size( max=200)
+	@Column(name="direccion", length = 200)
 	private String direccion;
 	
 	@ElementCollection

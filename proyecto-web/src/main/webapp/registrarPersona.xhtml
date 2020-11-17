@@ -20,7 +20,7 @@
 
 			<p:outputLabel for="nombre_persona" value="Nombre:" />
 			<p:inputText id="nombre_persona"
-				value="#{personaBean.persona.nombre}" />
+				value="#{personaBean.persona.nombre}" required="true" />
 			<p:message for="nombre_persona" />
 
 			<p:outputLabel for="direccion_persona" value="Dirección:" />
@@ -29,11 +29,16 @@
 			<p:message for="direccion_persona" />
 
 			<p:outputLabel for="email_persona" value="Email:" />
-			<p:inputText id="email_persona" value="#{personaBean.persona.email}" />
+			<p:inputText id="email_persona" value="#{personaBean.persona.email}"
+				required="true" validatorMessage="El email debe tener entre 7 y 200 caracteres" >
+				<f:validateLength maximum="200" minimum="7"/>
+				
+			</p:inputText>
 			<p:message for="email_persona" />
 
 			<p:outputLabel for="clave_persona" value="Clave:" />
-			<p:password id="clave_persona" value="#{personaBean.persona.clave}" />
+			<p:password id="clave_persona" value="#{personaBean.persona.clave}"
+				required="true" />
 			<p:message for="clave_persona" />
 
 
@@ -45,7 +50,8 @@
 
 	</h:form>
 
-	<p:growl id="mensajes_registro_persona" for="registro_persona" showDetail="true" />
+	<p:growl id="mensajes_registro_persona" for="registro_persona"
+		showDetail="true" />
 
 
 </h:body>

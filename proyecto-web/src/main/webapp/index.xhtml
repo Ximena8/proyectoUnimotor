@@ -6,36 +6,111 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Mi primera página JSF</title>
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="primeflex.css" />
+
+	<title>Unimotor</title>
 </h:head>
 <h:body>
+	<div id="header">
 
-	<header>
-	<div>icono de la página</div>
-	<div>
-		<h:form>
-			<ul>
-				<li><h:commandLink action="registrarPersona?faces-redirect=true"
-						value="Registrar Persona" /></li>
-						
-						<li><h:commandLink action="registrarVehiculo?faces-redirect=true"
-						value="Registrar nuevo vehículo" /></li>
-						
-				<li><h:commandLink action="cambio" value="Página de ejemplo" /></li>
-				
-			<!-- <li><h:commandLink action="#{EjemploBean.irARegistroPersona}" value="" /></li> -->	
-			</ul>
-		</h:form>
+		<div class="p-grid p-justify-center">
+
+			<div class="p-col-10">
+
+
+				<div class="p-grid p-align-center vertical-center ">
+
+					<div class="p-col-2" align="center">
+
+						<h:form>
+
+							<p:commandLink action="/index?faces.redirect=true">
+
+								<p:graphicImage library="images" name="icono.png" width="120px" />
+
+							</p:commandLink>
+
+						</h:form>
+
+					</div>
+
+					<div class="p-col-8" align="center">
+
+						<h:form>
+
+							<div class="input-search  div-inline ui-inputgroup">
+								<p:inputText placeholder="¿Qué vehículo esta buscabdo?"
+									required="true" value="#{busquedaBean.busqueda}" />
+								<p:commandButton update="@form" icon="pi pi-search" action="#{busquedaBean.buscar}" />
+
+							</div>
+
+						</h:form>
+
+					</div>
+
+					<div class="p-col-2" align="center">
+
+						<h:form>
+
+							<p:commandButton value="Iniciar sesión" />
+
+						</h:form>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<div align="center">
+
+			<h:form>
+
+				<p:menubar class="mi-menu">
+
+					<p:menuitem action="registrarPersona?faces-redirect=true"
+						value="Resgitrar Persona" />
+
+					<p:menuitem action="registrarVehiculo?faces-redirect=true"
+						value="Registrar nuevo vehículo" />
+
+					<p:menuitem action="misVehiculos?faces-redirect=true"
+						value="Mis publicaciones" />
+
+					<p:menuitem action="perfil?faces-redirect=true" value="Mi perfil" />
+
+				</p:menubar>
+
+			</h:form>
+
+		</div>
+
 	</div>
-	</header>
 
-	<section>
-	<div>Lista de los vehículos, más populares o buscados</div>
-	</section>
+	<div id="content">
+		<div>Lista de los vehículos, los mas populares o buscados</div>
+	</div>
 
-	<footer>
-	<p>Unimotor-2020</p>
-	</footer>
+
+	<div id="footer">
+
+
+		<div class="p-grid p-justify-center">
+
+			<div class="p-col-10" align="center">
+
+				<p>Universidad del Quindío - Análisis de algortimos II - 2020</p>
+
+			</div>
+		</div>
+	</div>
+
+
 
 </h:body>
 </html>

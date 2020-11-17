@@ -21,6 +21,7 @@ import javax.validation.constraints.Positive;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "TODOS_VEHICULOS", query = "select v from Vehiculo v"),
+	@NamedQuery(name = "BUSCAR_VEHCIULOS", query = "select v from Vehiculo v  where v.nombrePublicacion like :busqueda"),
 	@NamedQuery(name = "TODOS_VEHICULOS_TRANSMISION", query = "select v from Vehiculo v where v.transmision = :tran" ),
 	@NamedQuery(name = "TODOS_VEHICULOS_ANIO", query = "select v from Vehiculo v where v.anio >= 2011 and v.anio <= 2019" ),
 	@NamedQuery(name = "TODOS_VEHICULOS_PRECIO", query = "select v from Vehiculo v where v.precio between :precioMenor and :precioMayor " ),

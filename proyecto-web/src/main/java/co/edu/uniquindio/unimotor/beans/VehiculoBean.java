@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unimotor.beans;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import co.edu.uniquindio.unimotor.ejb.UnimotorEJB;
@@ -20,8 +22,9 @@ import co.edu.uniquindio.unimotor.entidades.Transmision;
 import co.edu.uniquindio.unimotor.entidades.Vehiculo;
 
 @Named
-@ApplicationScoped
-public class VehiculoBean {
+@ViewScoped
+public class VehiculoBean implements Serializable {
+	
 	
 	@EJB
 	private UnimotorEJB unimotorEJB;
@@ -32,6 +35,8 @@ public class VehiculoBean {
 	private Ciudad ciudad;
 	private Persona persona;
 	private Modelo modelo;
+	
+	private static final long serialVersionUID = 1L;
 	
 	@PostConstruct
 	public void inicializar() {

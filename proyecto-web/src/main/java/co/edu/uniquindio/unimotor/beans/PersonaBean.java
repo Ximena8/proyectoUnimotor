@@ -1,10 +1,14 @@
 package co.edu.uniquindio.unimotor.beans;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import co.edu.uniquindio.unimotor.ejb.UnimotorEJB;
@@ -12,13 +16,16 @@ import co.edu.uniquindio.unimotor.entidades.Ciudad;
 import co.edu.uniquindio.unimotor.entidades.Persona;
 
 @Named
-@ApplicationScoped
-public class PersonaBean {
+@ViewScoped
+public class PersonaBean implements Serializable {
+	
 	
 	@EJB
 	private UnimotorEJB unimotorEJB;
 	private Persona persona;
 	private Ciudad ciudad;
+	
+	private static final long serialVersionUID = 1L;
 	
 	@PostConstruct
 	public void inicializar() {

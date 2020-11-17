@@ -179,5 +179,13 @@ public class UnimotorEJB implements UnimotorEJBRemote {
 		return entityManager.find(Modelo.class, id);
 	}
 
+	@Override
+	public List<Vehiculo> buscarVehiculos(String busqueda) {
+		TypedQuery<Vehiculo> q = entityManager.createNamedQuery("BUSCAR_VEHCIULOS", Vehiculo.class); 	
+		q.setParameter("busqueda", "%"+busqueda+"%");
+		
+		return q.getResultList();
+	}
+
 
 }

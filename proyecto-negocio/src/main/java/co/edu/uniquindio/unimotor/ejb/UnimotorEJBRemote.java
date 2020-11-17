@@ -50,4 +50,5 @@ public interface UnimotorEJBRemote {
 	
 	Modelo obtenerModelo(Integer id);
 	
+	List<Vehiculo> buscarVehiculos(String busqueda);
 }

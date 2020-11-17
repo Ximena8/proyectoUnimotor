@@ -1,0 +1,27 @@
+body{
+	margin: 0;
+}
+
+.div-inline{
+	display:inline-block !important;
+	margin-ringt: 10px;
+}
+
+#header, #footer{
+	background: #8bcdcd;
+	border-bottom:1px solid #c8c8c8;
+}
+
+.mi-menu.ui-menu{
+	background: none;
+	border: none;
+}
+
+.input-search .ui-inputtext{
+	width: 600px;
+}
+
+.p-grid{
+	width:100% !important;
+	margin:0 !important; 
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)https://github.com/primefaces/primeflex/blob/master/primeflex.css -->
+<html lang="es" class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+  <link rel="dns-prefetch" href="https://github.githubassets.com/">
+  <link rel="dns-prefetch" href="https://avatars0.githubusercontent.com/">
+  <link rel="dns-prefetch" href="https://avatars1.githubusercontent.com/">
+  <link rel="dns-prefetch" href="https://avatars2.githubusercontent.com/">
+  <link rel="dns-prefetch" href="https://avatars3.githubusercontent.com/">
+  <link rel="dns-prefetch" href="https://github-cloud.s3.amazonaws.com/">
+  <link rel="dns-prefetch" href="https://user-images.githubusercontent.com/">
+
+
+
+  <link crossorigin="anonymous" media="all" integrity="sha512-v0wSB0SbeOFEPVJKeG3ENnZHwhmCB7glTJtbS70wGCd2pJHoqe+KL2LEDE4gdI+EaY0lXGWQ5IPmHimAuvJmWw==" rel="stylesheet" href="./faces_files/frameworks-bf4c1207449b78e1443d524a786dc436.css">
+  
+    <link crossorigin="anonymous" media="all" integrity="sha512-M8Afg9uGTori2M7MrbS40PLl6ZnpBDTQwSDHp8SG4q9w6kmVlC/2cW2BDQcW2v0U3X2p3Wuy4ZJVtb0bp5vGjw==" rel="stylesheet" href="./faces_files/github-33c01f83db864e8ae2d8ceccadb4b8d0.css">
+    
+    
+    
+    
+
+  <script crossorigin="anonymous" defer="defer" integrity="sha512-8K2vvwbW+6H27Nad5ydg8PA2/aMD/LKq+EiK9s0U0hhVZxCI2tWBsYk9beAtisRw2j+Or5k2/F+6dk02nmj/PA==" type="application/javascript" src="./faces_files/environment-f0adafbf.js.descarga"></script>
+    <script crossorigin="anonymous" defer="defer" integrity="sha512-p4Ma4uO0GCQ9Yu5uchIYon3R3HkwT2G1EtvYJCCXx7lI4fk2pFn+274bLMwFe4nE9OUoPYUJ/GTG04XIl4a7PA==" type="application/javascript" src="./faces_files/chunk-frameworks-a7831ae2.js.descarga"></script>
+    <script crossorigin="anonymous" defer="defer" integrity="sha512-mLDjm9uhpaUeFWuJOrGMwEh06jr/y9RPYQxM3rg1rMgi3efnHh9oW2wsulMy85+F5SZp+5FacxnRiacK3X2MVA==" type="application/javascript" src="./faces_files/chunk-vendor-98b0e39b.js.descarga"></script>
+  
+  <script crossorigin="anonymous" defer="defer" integrity="sha512-m2vRq0ZwvgBf9hSv2RnRFjQxubbQeVvdnDNVz0TOIj51Iy6NYl5MKm4U9YB0Da9CqxOYPuQFP8daH2svog+Wjg==" type="application/javascript" src="./faces_files/behaviors-9b6bd1ab.js.descarga"></script>
+  
+    <script crossorigin="anonymous" defer="defer" integrity="sha512-P2YMkqfXJOOfxTTkNHbblY5ks3U+e9w9tiVyK9syrE5+JmlaCg1kUiuT1DfbyJXwaOLaRLT3zam2r+QrxTZ3iw==" type="application/javascript" data-module-id="./chunk-contributions-spider-graph.js" data-src="https://github.githubassets.com/assets/chunk-contributions-spider-graph-3f660c92.js"></script>
+    <script crossorigin="anonymous" defer="defer" integrity="sha512-obMR8mPKx8OvqRe34LgnUcxeJ1qujiA4ND3H6UX13ExMlA/WfHLjEzXRmgGRcRvN/8J1nzc+Z+jgz/PLTFy6zg==" type="application/javascript" data-module-id="./chunk-drag-drop.js" data-src="https://github.githubassets.com/assets/chunk-drag-drop-a1b311f2.js"></script>
+    <script crossorigin="anonymous" defer="defer" integrity="sha512-o95wCKfOqL8EX5reoP68bQ/mUPvLnu0T5LaPZLAv0xQALhTP0XqriKBrnmOXbo6BVVM9eNnesNYw8rA37Ta60w==" type="application/javascript" data-module-id="./chunk-jump-to.js" data-src="https://github.githubassets.com/assets/chunk-jump-to-a3de7008.js"></script>
+    <script crossorigin="anonymous" defer="defer" integrity="sha512-tcH4xCRuMBAh1PruDaiwGnRIbHlF6bGLhxyCQ16uqok1cV5QFMguVPWJtN9KI0jGQOgN+Pha3+uOUXhXdfK/qw==" type="application/javascript" data-module-id="./chunk-profile-pins-element.js" data-src="https://github.githubassets.com/assets/chunk-profile-pins-element-b5c1f8c4.js"></script>
+    <script crossorigin="anonymous" defer="defer" integrity="sha512-hUprZmPKGx2Ji0cJJ29yrNBTnfCQoEg+Ow0rEG6bVGXu0HcagYwfPS9a5oRdoqvkE+nSk4FkIaklkLvc7Jb5+g==" type="application/javascript" data-module-id="./chunk-randomColor.js" data-src="https://github.githubassets.com/assets/chunk-randomColor-854a6b66.js"></script>
+    <script crossorigin="anonymous" defer="defer" integrity="sha512-E+H+wAtjiqutBvn2cnXzDIvmasIhYiS7i7JzOfFUwo+Ej8zT54OrJtP//RhwixnypgOpCF4JvqzYy6zOtORDmg==" type="application/javascript" data-module-id="./chunk-runner-groups.js" data-src="https://github.githubassets.com/assets/chunk-runner-groups-13e1fec0.js"></script>
+    <script crossorigin="anonymous" defer="defer" integrity="sha512-pkFKgC9JFth/pgRqBLhELfLOltqYbv+r++HblYEsbFpg7rCimMCN4Q/8RvPYilY0QMGT0q9vlJj1vzzUXYk3Zw==" type="application/javascript" data-module-id="./chunk-sortable-behavior.js" data-src="https://github.githubassets.com/assets/chunk-sortable-behavior-a6414a80.js"></script>
+    <script crossorigin="anonymous" defer="defer" integrity="sha512-HCEY5FUSNmHYIUILB/UYu4Q6dPhLDAtK/MCQibzObiq4PxHpAohvWEf1oTil7Z4uckwsZ8q5VgDlEHJNNJ+tNg==" type="application/javascript" data-module-id="./chunk-tweetsodium.js" data-src="https://github.githubassets.com/assets/chunk-tweetsodium-1c2118e4.js"></script>
+    <script crossorigin="anonymous" defer="defer" integrity="sha512-e+30BriXsBu+fb/LGEU9gAzSwn25wRYzDDPpr2AA8jZJI9034xzRHYXjA9XhF+7ncBIGJ/uTD11G25/H0XyuZg==" type="application/javascript" data-module-id="./chunk-user-status-submit.js" data-src="https://github.githubassets.com/assets/chunk-user-status-submit-7bedf406.js"></script>
+  
+  <script crossorigin="anonymous" defer="defer" integrity="sha512-N0O5xJoLLdo2d6irsQsQgERIRUSntW3Z1rpjUQtKPiNMIGLLIjG3PrrRgLlFgDlAE3wMyfwOHVHzv2eHsjCOtw==" type="application/javascript" src="./faces_files/repositories-3743b9c4.js.descarga"></script>
+<script crossorigin="anonymous" defer="defer" integrity="sha512-aw5tciVT0IsECUmMuwp9ez60QReE2/yFNL1diLgZnOom6RhU8+0lG3RlAKto4JwbCoEP15E41Pksd7rK5BKfCQ==" type="application/javascript" src="./faces_files/topic-suggestions-6b0e6d72.js.descarga"></script>
+
+  <meta name="viewport" content="width=device-width">
+  
+  <title>primeflex/primeflex.css at master · primefaces/primeflex</title>
+    <meta name="description" content="PrimeFlex is a lightweight flex based responsive grid optimized for mobile phones, tablets and desktops - primefaces/primeflex">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://github.com/opensearch.xml" title="GitHub">
+  <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+  <meta property="fb:app_id" content="1401488693436528">
+  <meta name="apple-itunes-app" content="app-id=1477376905">
+    <meta name="twitter:image:src" content="https://avatars3.githubusercontent.com/u/3494069?s=400&amp;v=4"><meta name="twitter:site" content="@github"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="primefaces/primeflex"><meta name="twitter:description" content="PrimeFlex is a lightweight flex based responsive grid optimized for mobile phones, tablets and desktops - primefaces/primeflex">
+    <meta property="og:image" content="https://avatars3.githubusercontent.com/u/3494069?s=400&amp;v=4"><meta property="og:site_name" content="GitHub"><meta property="og:type" content="object"><meta property="og:title" content="primefaces/primeflex"><meta property="og:url" content="https://github.com/primefaces/primeflex"><meta property="og:description" content="PrimeFlex is a lightweight flex based responsive grid optimized for mobile phones, tablets and desktops - primefaces/primeflex">
+
