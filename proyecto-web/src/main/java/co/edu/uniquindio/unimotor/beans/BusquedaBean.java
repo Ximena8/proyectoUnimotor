@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unimotor.beans;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -9,6 +10,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.faces.annotation.FacesConfig.Version;
 import javax.faces.annotation.ManagedProperty;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -17,14 +19,17 @@ import co.edu.uniquindio.unimotor.entidades.Vehiculo;
 
 @FacesConfig(version = Version.JSF_2_3)
 @Named
-@RequestScoped
-public class BusquedaBean {
+@ViewScoped
+public class BusquedaBean implements Serializable{
+	
+	
 	
 	@EJB
 	private UnimotorEJB clienteEJB;
 	private String busqueda;
-	private List<Vehiculo> lista;
-	
+	private List<Vehiculo> vehiculos;
+	private static final long serialVersionUID = 1L;
+	 
 	@Inject
 	@ManagedProperty(value = "#{param.busqueda}")
 	private  String busquedaParam;
@@ -33,7 +38,7 @@ public class BusquedaBean {
 	public void inicializar() {
 		
 		if(busquedaParam != null) {
-			lista = clienteEJB.buscarVehiculos(busquedaParam);
+			vehiculos = clienteEJB.buscarVehiculos(busquedaParam);
 		}
 
 	}
@@ -54,12 +59,12 @@ public class BusquedaBean {
 		this.busqueda = busqueda;
 	}
 
-	public List<Vehiculo> getLista() {
-		return lista;
+	public List<Vehiculo> getVehiculos() {
+		return vehiculos;
 	}
 
-	public void setLista(List<Vehiculo> lista) {
-		this.lista = lista;
+	public void setVehiculos(List<Vehiculo> vehiculos) {
+		this.vehiculos = vehiculos;
 	}
 
 

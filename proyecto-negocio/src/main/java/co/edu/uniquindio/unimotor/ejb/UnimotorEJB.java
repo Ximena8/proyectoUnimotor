@@ -90,9 +90,9 @@ public class UnimotorEJB implements UnimotorEJBRemote {
 	}
 
 	@Override
-	public List<Vehiculo> obtenerListaVehiculo() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Vehiculo> obtenerListaVehiculos() {
+		TypedQuery<Vehiculo> q = entityManager.createNamedQuery("LISTA_VEHICULOS", Vehiculo.class);
+		return q.getResultList();
 	}
 
 	@Override
@@ -123,20 +123,20 @@ public class UnimotorEJB implements UnimotorEJBRemote {
 
 	@Override
 	public List<Caracteristicas> obtenerListaCaracteristicas() {
-		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Caracteristicas> q = entityManager.createNamedQuery("LISTA_CARACTERISTICAS",Caracteristicas.class);
+		return q.getResultList();
 	}
 
 	@Override
 	public List<Ciudad> obtenerListaCidades() {
-		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Ciudad> q = entityManager.createNamedQuery("LISTA_CIUDADES",Ciudad.class);
+		return q.getResultList();
 	}
 
 	@Override
-	public List<Modelo> obtenerListaModelo() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Modelo> obtenerListaModelos() {
+		TypedQuery<Modelo> q = entityManager.createNamedQuery("LISTA_MODELOS",Modelo.class);
+		return q.getResultList();
 	}
 
 	@Override
@@ -181,10 +181,16 @@ public class UnimotorEJB implements UnimotorEJBRemote {
 
 	@Override
 	public List<Vehiculo> buscarVehiculos(String busqueda) {
-		TypedQuery<Vehiculo> q = entityManager.createNamedQuery("BUSCAR_VEHCIULOS", Vehiculo.class); 	
+		TypedQuery<Vehiculo> q = entityManager.createNamedQuery("BUSCAR_VEHICULOS", Vehiculo.class); 	
 		q.setParameter("busqueda", "%"+busqueda+"%");
 		
 		return q.getResultList();
+	}
+
+	@Override
+	public Caracteristicas obtenerCaracteristica(Integer id) {
+		return entityManager.find(Caracteristicas.class, id);
+		
 	}
 
 

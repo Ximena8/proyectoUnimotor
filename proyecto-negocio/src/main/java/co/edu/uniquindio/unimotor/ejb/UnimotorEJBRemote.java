@@ -24,7 +24,7 @@ public interface UnimotorEJBRemote {
 	
 	void registrarVehiculo(Vehiculo vehiculo) throws Exception;
 	
-	List<Vehiculo> obtenerListaVehiculo();
+	List<Vehiculo> obtenerListaVehiculos();
 
 	void modificarVehiculo(Vehiculo vehiculo) throws VehiculoInexistenteException;
 	
@@ -34,7 +34,7 @@ public interface UnimotorEJBRemote {
 	
 	List<Ciudad> obtenerListaCidades();
 	
-	List<Modelo> obtenerListaModelo();
+	List<Modelo> obtenerListaModelos();
 	
 	void enviarEmail(String asunto, String mensaje, String destinatario)throws Exception;
 	
@@ -51,4 +51,6 @@ public interface UnimotorEJBRemote {
 	Modelo obtenerModelo(Integer id);
 	
 	List<Vehiculo> buscarVehiculos(String busqueda);
+	
+	Caracteristicas obtenerCaracteristica(Integer id);
 }

@@ -25,8 +25,18 @@
 
 			<p:outputLabel for="direccion_persona" value="Dirección:" />
 			<p:inputText id="direccion_persona"
-				value="#{personaBean.persona.direccion}" />
+				value="#{personaBean.persona.direccion}"  />
 			<p:message for="direccion_persona" />
+			
+			
+			<p:outputLabel for="ciudad_persona" value="Ciudad:" />
+			<p:selectOneMenu id="ciudad_persona" value="#{personaBean.persona.ciudad}" required="true" converter="#{ciudadConverter}" >
+			  <f:selectItem itemLabel="Seleccione una ciudad" noSelectionOption="true" />
+			  <f:selectItems value="#{personaBean.ciudades}" var="ciudad" itemLabel="#{ciudad.nombre}"  />
+			</p:selectOneMenu>
+			<p:message for="ciudad_persona" />
+
+
 
 			<p:outputLabel for="email_persona" value="Email:" />
 			<p:inputText id="email_persona" value="#{personaBean.persona.email}"

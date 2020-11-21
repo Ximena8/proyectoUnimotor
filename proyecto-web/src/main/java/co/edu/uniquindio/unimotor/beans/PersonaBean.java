@@ -1,6 +1,7 @@
 package co.edu.uniquindio.unimotor.beans;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -23,14 +24,14 @@ public class PersonaBean implements Serializable {
 	@EJB
 	private UnimotorEJB unimotorEJB;
 	private Persona persona;
-	private Ciudad ciudad;
+	private List<Ciudad> ciudades;
 	
 	private static final long serialVersionUID = 1L;
 	
 	@PostConstruct
 	public void inicializar() {
 		
-		ciudad= unimotorEJB.obtenerCiudad(7);
+		ciudades = unimotorEJB.obtenerListaCidades();
 		persona = new Persona();
 		
 		
@@ -40,7 +41,7 @@ public class PersonaBean implements Serializable {
 		
 		
 		try {
-			persona.setCiudad(ciudad);
+		
 			unimotorEJB.registrarPersona(persona);
 			
 			FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "¡ Registro existoso !");
@@ -64,5 +65,15 @@ public class PersonaBean implements Serializable {
 	public void setPersona(Persona persona) {
 		this.persona = persona;
 	}
+
+	public List<Ciudad> getCiudades() {
+		return ciudades;
+	}
+
+	public void setCiudades(List<Ciudad> ciudades) {
+		this.ciudades = ciudades;
+	}
+	
+	
 
 }
