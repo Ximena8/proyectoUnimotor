@@ -11,9 +11,10 @@ import javax.persistence.*;
  *
  */
 @Entity
-//@NamedQuery(name = "LISTA_PERSONAS_CIUDAD", query = "select p.nombre, p.email, p.direccion from  Ciudad c join c.persona  p where c.nombre = :nombre"),
+@NamedQueries({
+@NamedQuery(name = "LISTA_PERSONAS_CIUDAD", query = "select p.nombre, p.email, p.direccion from  Ciudad c join c.persona  p where c.nombre = :nombre"),
 @NamedQuery(name = "LISTA_CIUDADES", query= "select c from Ciudad c")
-
+})
 public class Ciudad implements Serializable {
 
 	  

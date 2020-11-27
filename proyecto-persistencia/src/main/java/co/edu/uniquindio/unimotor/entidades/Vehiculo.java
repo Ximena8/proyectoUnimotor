@@ -21,6 +21,8 @@ import javax.validation.constraints.Positive;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "LISTA_VEHICULOS", query = "select v from Vehiculo v"),
+	@NamedQuery(name = "BUSCAR_VEHICULOS_PLACA", query = "select v from Vehiculo v where v.placa = :placa"),
+	@NamedQuery(name = "BUSCAR_VEHICULOS_PERSONA", query = "select v from Vehiculo v where v.persona.id = :id"),
 	@NamedQuery(name = "BUSCAR_VEHICULOS", query = "select v from Vehiculo v  where v.nombrePublicacion like :busqueda"),
 	@NamedQuery(name = "TODOS_VEHICULOS_TRANSMISION", query = "select v from Vehiculo v where v.transmision = :tran" ),
 	@NamedQuery(name = "TODOS_VEHICULOS_ANIO", query = "select v from Vehiculo v where v.anio >= 2011 and v.anio <= 2019" ),
@@ -37,17 +39,8 @@ import javax.validation.constraints.Positive;
 	@NamedQuery(name = "VALOR_PROMEDIO_CONDICIONES", query = "select avg(v.precio) from Vehiculo v where v.modelo.marca = :marca and v.vehiculoNuevo = :nuevo and v.ciudad = :ciudad" ),
 	@NamedQuery(name = "LISTA_VEHICULOS_TODAS_CARACTERISTICAS", query = "select v from Vehiculo v join v.caracteristicas c where c.id IN :lista group by v having count(v) = :tamLista" ),
 //	@NamedQuery(name = "VEHICULO_MAS_COSTOSO_CIUDAD", query = "select v from Vehiculo v where v.vehiculoNuevo = true and v.ciudad.nombre = :ciudad and v.precio = select max(v.precio)"),
-	@NamedQuery(name = "VALOR_MAS_COSTOSO_POR_MARCA", query = "select v.modelo.marca.nombre, max(v.precio) from Vehiculo v group by v.modelo.marca" ),
+	@NamedQuery(name = "VALOR_MAS_COSTOSO_POR_MARCA", query = "select v.modelo.marca.nombre, max(v.precio) from Vehiculo v group by v.modelo.marca" )
 //	@NamedQuery(name = "CIUDAD_CON_MAS_VEHICULOS", query = "select v.ciudad.nombre, count(v)  from Vehiculo v group by v.ciudad order by c desc" )
-
-
-
-
-
-
-	 
-
-
 
 })
 
@@ -208,7 +201,7 @@ public class Vehiculo implements Serializable {
 		return this.vehiculoNuevo;
 	}
 
-	public void setvehiculoNuevo(boolean anio) {
+	public void setvehiculoNuevo(boolean vehiculoNuevo) {
 		this.vehiculoNuevo = vehiculoNuevo;
 	} 
 

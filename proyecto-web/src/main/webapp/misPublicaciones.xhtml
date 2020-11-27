@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/WEB-INF/template.xhtml">
+
+	<ui:define name="title">Unimotor - Mis publicaciones</ui:define>
+
+	<ui:define name="content">
+
+		<div class="p-grid p-justify-center">
+			
+			<div class="p-col-10">
+
+
+				<h:form>
+					<p:dataView value="#{perfiBean.misVehiculos}" var="vehiculo"
+						listIcon="pi pi-bars">
+						<p:dataViewGridItem>
+							<p:panel header="#{vehiculo.nombrePublicacion}"
+								style="text-align:center">
+								<h:panelGrid columns="1" style="width:100%">
+									<p:graphicImage StyleClass="imagen-vehiculo"
+										url="http://localhost:8080/unimotor/#{vehiculo.imagenPrincipal}" />
+
+
+									<h:outputText value="#{vehiculo.precio}" />
+									<h:outputText
+										value="#{vehiculo.modelo.nombre} - #{vehiculo.modelo.marca.nombre}" />
+
+									<p:commandLink
+										action="{perfil.Bean.editarVehiculo(vehiculo.id)}">
+										<h:outputText styleClass="ui-icon pi pi-search"
+											style="margin:0 auto;" />
+									</p:commandLink>
+								</h:panelGrid>
+							</p:panel>
+						</p:dataViewGridItem>
+					</p:dataView>
+				</h:form>
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>
+</html>

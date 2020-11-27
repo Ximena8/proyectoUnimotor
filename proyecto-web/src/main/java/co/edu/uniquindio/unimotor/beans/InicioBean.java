@@ -26,6 +26,10 @@ public class InicioBean implements Serializable{
 		vehiculos = unimotorEJB.obtenerListaVehiculos();
 	}
 	
+	public String irAlDetalle(String id) {
+		return"detalleVehiculo?faces-redirect=true&amp;vehiculo="+id;
+	}
+	
 	public List<Vehiculo> getVehiculos() {
 		return vehiculos;
 	}

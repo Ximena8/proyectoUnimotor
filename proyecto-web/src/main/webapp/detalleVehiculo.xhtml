@@ -1,11 +1,102 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Detalle del veh�culo</title>
-</head>
-<body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-</body>
+<ui:composition template="/WEB-INF/template.xhtml">
+
+	<ui:define name="title">#{detalleVehiculo.vehiculo.nombrePublicacion}</ui:define>
+
+	<ui:define name="content">
+
+		<div class="p-grid nested-grid">
+
+			<div class="p-col-7">
+
+				<div class="box box-stretched">
+
+					<p:galleria value="#{detalleVehiculo.vehiculo.fotos}" var="imagen"
+						panelHeight="425">
+						<p:graphicImage url="/../unimotor/#{imagen}"
+							alt="Image description for #{imagen}" title="#{imagen}" />
+					</p:galleria>
+				</div>
+			</div>
+
+			<div class="p-col-5">
+
+				<div class="p-grid">
+
+					<div class="box">
+						<h1>#{detalleVehiculo.vehiculo.nombre.nombrePublicacion}</h1>
+						<h:form>
+							<p:toggleSwitch value="#{detalleVehiculo.favorito}">
+								<p:ajax listener="#{detalleVehiculo.marcarComoFavorito}" />
+							</p:toggleSwitch>
+						</h:form>
+						<h2>Precio: $ #{detalleVehiculo.vehiculo.precio}</h2>
+					</div>
+					<div class="box">
+						<h3>Vededor: #{detalleVehiculo.vehiculo.persona.nombre}</h3>
+						<h3>Ciudad: #{detalleVehiculo.vehiculo.ciudad.nombre}</h3>
+						<h3>Kilómetros recorridos:
+							#{detalleVehiculo.vehiculo.kilometraje}</h3>
+					</div>
+
+					<p:dataList
+						emptyMessage="No hay caracteriticas asocicadas al vehiculo"
+						styleClass="lista-carac"
+						value="#{detalleVehiculo.vehiculo.caracteristicas}"
+						var="caracteristica">
+						<f:facet name="header">Características</f:facet>
+						<h:outputText value="#{caracteristica.nombre}}" />
+					</p:dataList>
+				</div>
+			</div>
+		</div>
+
+		<br />
+
+		<p:panel header="Descripción">
+			<p>#{detalleVehiculo.vehiculo.descripcion}</p>
+		</p:panel>
+
+		<br />
+
+		<p:panel header="Hacer una nueva pregunta">
+			<h:form>
+				<h:panelGrid colums="2" cellpadding="3">
+					<p:inputTextarea value="#{detalleVehiculo.pregunta}" required="true"
+						style="width:450px;height:300px" />
+					<p:commandButton value="Guradar preguntar"
+						action="#{detalleVehiculo.hacerPregunta}" update="@form, lista-c" />
+				</h:panelGrid>
+				<p:growl for="msj-pregunta" showDetail="true" />
+			</h:form>
+		</p:panel>
+
+		<br />
+		<p:dataList id="lista-c" value="#{detalleVehiculo.vehiculo.pregunta}"
+			var="pregunta" emptyMessage="No hay preguntas" type="definition">
+			<f:facet name="header">Preguntas</f:facet>
+			<h:panelGrid columns="1" style="width:100%">
+				<p:outputPanel>
+					<h:panelGrid columns="2" cellpadding="5">
+						<h:outputText value="#{pregunta.persona.nombre}:"
+							style="font-weight: bold" />
+						<h:outputText value="#{pregunta.texto}" />
+						<h:outputText value="#{pregunta.fechaPublicacion}" />
+					</h:panelGrid>
+				</p:outputPanel>
+			</h:panelGrid>
+		</p:dataList>
+
+
+
+
+	</ui:define>
+</ui:composition>
 </html>

@@ -1,80 +1,81 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-<h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<h:outputStylesheet library="css" name="style.css" />
-<h:outputStylesheet library="css" name="primeflex.css" />
-<title>Resultado de Búsqueda</title>
-</h:head>
-<h:body>
+<ui:composition template="/WEB-INF/template.xhtml">
 
-	<div class="p-grid p-justify-center">
+<ui:define name="title">Unimotor - Resultados de BÃºsqueda</ui:define>
 
-		<div class="p-col-10">
-			<h:form>
-				<p:dataView value="#{busquedaBean.vehiculos}" var="vehiculo"
-					gridIcon="pi pi-th-large" listIcon="pi pi-bars">
+	<ui:define name="content">
 
-					<p:dataViewGridItem>
-						<p:panel header="#{vehiculo.nombrePublicacion}"
-							style="text-align:center">
+		<div>
+				<h:form>
+					<p:dataView value="#{busquedaBean.vehiculos}" var="vehiculo"
+						gridIcon="pi pi-th-large" listIcon="pi pi-bars">
 
-							<h:panelGrid columns="1" style="width:100%">
+						<p:dataViewGridItem>
+							<p:panel header="#{vehiculo.nombrePublicacion}"
+								style="text-align:center">
 
-								<p:graphicImage styleClass="imagen-vehiculo"  url="http://localhost:8080/unimotor/#{vehiculo.imagenPrincipal}" />
+								<h:panelGrid columns="1" style="width:100%">
 
-								<h:outputText value="#{vehiculo.precio}" />
-								<h:outputText
-									value="#{vehiculo.modelo.nombre} - #{vehiculo.modelo.marca.nombre}" />
+									<p:graphicImage styleClass="imagen-vehiculo"
+										url="http://localhost:8080/unimotor/#{vehiculo.imagenPrincipal}" />
+
+									<h:outputText value="#{vehiculo.precio}" />
+									<h:outputText
+										value="#{vehiculo.modelo.nombre} - #{vehiculo.modelo.marca.nombre}" />
+
+									<p:commandLink action="detalleVehiculo?faces-redirect=true">
+										<h:outputText styleClass="ui-icon pi pi-search"
+											style="margin:0 auto;" />
+									</p:commandLink>
+
+								</h:panelGrid>
+							</p:panel>
+						</p:dataViewGridItem>
+
+						<p:dataViewListItem>
+							<h:panelGrid columns="3" style="width:100%"
+								columnClasses="logo,detail">
+								<p:graphicImage styleClass="imagen-vehiculo"
+									url="http://localhost:8080/unimotor/#{vehiculo.imagenPrincipal}" />
+
+								<p:outputPanel>
+									<h:panelGrid colums="2" cellpadding="5">
+										<h:outputText value="Nombre publicaciÃ³n:" />
+										<h:outputText value="#{vehiculo.nombrePublicacion}"
+											style="font-weight: bold" />
+
+										<h:outputText value="Precio:" />
+										<h:outputText value="#{vehiculo.precio}"
+											style="font-weight: bold" />
+
+										<h:outputText value="Modelo:" />
+										<h:outputText value="#{vehiculo.modelo.nombre}" />
+
+										<h:outputText value="Marca:" />
+										<h:outputText value="#{vehiculo.modelo.marca.nombre}" />
+									</h:panelGrid>
+								</p:outputPanel>
 
 								<p:commandLink action="detalleVehiculo?faces-redirect=true">
 									<h:outputText styleClass="ui-icon pi pi-search"
 										style="margin:0 auto;" />
 								</p:commandLink>
-
 							</h:panelGrid>
-						</p:panel>
-					</p:dataViewGridItem>
+						</p:dataViewListItem>
 
-					<p:dataViewListItem>
-						<h:panelGrid columns="3" style="width:100%"
-							columnClasses="logo,detail">
-							<p:graphicImage styleClass="imagen-vehiculo"  url="http://localhost:8080/unimotor/#{vehiculo.imagenPrincipal}" />
+					</p:dataView>
+				</h:form>
+			</div>
+		
+	</ui:define>
 
-							<p:outputPanel>
-								<h:panelGrid colums="2" cellpadding="5">
-									<h:outputText value="Nombre publicación:" />
-									<h:outputText value="#{vehiculo.nombrePublicacion}"
-										style="font-weight: bold" />
-
-									<h:outputText value="Precio:" />
-									<h:outputText value="#{vehiculo.precio}"
-										style="font-weight: bold" />
-
-									<h:outputText value="Modelo:" />
-									<h:outputText value="#{vehiculo.modelo.nombre}" />
-
-									<h:outputText value="Marca:" />
-									<h:outputText value="#{vehiculo.modelo.marca.nombre}" />
-								</h:panelGrid>
-							</p:outputPanel>
-
-							<p:commandLink action="detalleVehiculo?faces-redirect=true">
-								<h:outputText styleClass="ui-icon pi pi-search"
-									style="margin:0 auto;" />
-							</p:commandLink>
-						</h:panelGrid>
-					</p:dataViewListItem>
-
-				</p:dataView>
-			</h:form>
-		</div>
-	</div>
-
-</h:body>
+</ui:composition>
 </html>

@@ -1,6 +1,7 @@
 package co.edu.uniquindio.unimotor.ejb;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -11,8 +12,11 @@ import javax.persistence.TypedQuery;
 
 import co.edu.uniquindio.unimotor.entidades.Caracteristicas;
 import co.edu.uniquindio.unimotor.entidades.Ciudad;
+import co.edu.uniquindio.unimotor.entidades.Favorito;
+import co.edu.uniquindio.unimotor.entidades.FavoritoPK;
 import co.edu.uniquindio.unimotor.entidades.Modelo;
 import co.edu.uniquindio.unimotor.entidades.Persona;
+import co.edu.uniquindio.unimotor.entidades.Pregunta;
 import co.edu.uniquindio.unimotor.entidades.TipoCombustible;
 import co.edu.uniquindio.unimotor.entidades.TipoVehiculo;
 import co.edu.uniquindio.unimotor.entidades.Transmision;
@@ -192,6 +196,77 @@ public class UnimotorEJB implements UnimotorEJBRemote {
 		return entityManager.find(Caracteristicas.class, id);
 		
 	}
+
+	@Override
+	public Vehiculo obtenerVediculo(Integer id) {
+		
+		return entityManager.find(Vehiculo.class, id);
+	}
+
+	@Override
+	public void guardarFavorito(Persona persona, Vehiculo vehiculo) {
+		Persona p = entityManager.find(Persona.class, persona.getId());
+		Vehiculo v = entityManager.find(Vehiculo.class, vehiculo.getId());
+		
+	if(p!=null && v!=null) {
+		entityManager.persist(new Favorito(p,v,new Date()) );
+			
+		}
+		
+	}
+
+	@Override
+	public void eliminarFavorito(Persona persona, Vehiculo vehiculo) {
+		Persona p = entityManager.find(Persona.class, persona.getId());		
+		Vehiculo v = entityManager.find(Vehiculo.class, vehiculo.getId());
+	
+	if(p!=null && v!=null) {
+		FavoritoPK llave = new FavoritoPK(p.getId(),v.getId());
+		Favorito fav = entityManager.find(Favorito.class,llave);
+		entityManager.remove(fav);
+	}
+		
+	}
+
+	@Override
+	public Pregunta hacerPregunta(Persona persona, Vehiculo vehiculo, String textoPregunta) throws Exception {
+		
+		try {
+	Pregunta pregunta = null;
+	if(persona!=null && vehiculo!=null) {
+		pregunta = new Pregunta(textoPregunta, new Date(), persona,vehiculo);
+		entityManager.persist(pregunta);
+		}else {
+			throw new Exception("Es necesario definir una pregunta y un vehiculo para registrar la pregunta");
+		}
+		return pregunta;
+		}catch (Exception e) {
+			throw new Exception("Hubo un error al momento de registrar la pregunta");
+		}
+	}
+
+	@Override
+	public List<Pregunta> obtenerPreguntasVehiculo(Integer codigoV) {
+		TypedQuery<Pregunta> q = entityManager.createNamedQuery("LISTA_PREGUNTAS", Pregunta.class); 	
+		q.setParameter("id",codigoV);
+		return q.getResultList();
+	}
+
+	@Override
+	public List<Caracteristicas> obtenerCaracteristicasVehiculo(Integer codigoV) {
+		TypedQuery<Caracteristicas> q = entityManager.createNamedQuery("LISTA_CARACTERISTICAS_VEHICULO", Caracteristicas.class); 	
+		q.setParameter("id",codigoV);
+		return q.getResultList();
+	}
+
+	@Override
+	public List<Vehiculo> obtenerListaVehiculosPersona(Integer codigoP) {
+		TypedQuery<Vehiculo> q = entityManager.createNamedQuery("BUSCAR_VEHICULOS_PERSONA", Vehiculo.class); 	
+		q.setParameter("id",codigoP);
+		return q.getResultList();
+
+	}
+
 
 
 }

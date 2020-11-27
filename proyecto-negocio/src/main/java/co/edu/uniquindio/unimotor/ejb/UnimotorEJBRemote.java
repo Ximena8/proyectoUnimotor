@@ -8,6 +8,7 @@ import co.edu.uniquindio.unimotor.entidades.Caracteristicas;
 import co.edu.uniquindio.unimotor.entidades.Ciudad;
 import co.edu.uniquindio.unimotor.entidades.Modelo;
 import co.edu.uniquindio.unimotor.entidades.Persona;
+import co.edu.uniquindio.unimotor.entidades.Pregunta;
 import co.edu.uniquindio.unimotor.entidades.TipoCombustible;
 import co.edu.uniquindio.unimotor.entidades.TipoVehiculo;
 import co.edu.uniquindio.unimotor.entidades.Transmision;
@@ -53,4 +54,26 @@ public interface UnimotorEJBRemote {
 	List<Vehiculo> buscarVehiculos(String busqueda);
 	
 	Caracteristicas obtenerCaracteristica(Integer id);
+	
+	 Vehiculo obtenerVediculo(Integer id);
+	 
+	 void guardarFavorito(Persona persona, Vehiculo vehiculo);
+	 
+	 void eliminarFavorito(Persona persona, Vehiculo vehiculo);
+	 
+	 Pregunta hacerPregunta(Persona persona, Vehiculo vehiculo,String textoPregunta) throws Exception;
+	 
+	 List<Pregunta> obtenerPreguntasVehiculo(Integer codigoV);
+	 
+	 List<Caracteristicas> obtenerCaracteristicasVehiculo(Integer codigoV);
+	 
+	 List<Vehiculo> obtenerListaVehiculosPersona(Integer codigoP);
+	 
+	
+	 
+	 
+	 
+	 
+	 
+	
 }

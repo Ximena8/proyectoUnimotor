@@ -16,9 +16,24 @@ public class FavoritoPK  implements Serializable {
 	private Integer idVehiculo;
 	private static final long serialVersionUID = 1L;
 
-	public FavoritoPK() {}
+	
 
 	
+
+	public FavoritoPK() {
+		super();
+		
+	}
+	
+	
+
+	public FavoritoPK(Integer idPersona, Integer idVehiculo) {
+		super();
+		this.idPersona = idPersona;
+		this.idVehiculo = idVehiculo;
+	}
+
+
 
 	public Integer getIdPersona() {
 		return this.idPersona;

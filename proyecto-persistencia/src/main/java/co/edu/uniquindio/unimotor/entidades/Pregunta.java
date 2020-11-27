@@ -12,21 +12,24 @@ import javax.persistence.*;
  *
  */
 @Entity
-@NamedQuery(name = "LISTA_PERSONAS_PREGUNTA_VEHICULO", query = "select distinct p.persona from Pregunta p where p.vehiculo.id = :id")
-
+@NamedQueries({
+@NamedQuery(name = "LISTA_PERSONAS_PREGUNTA_VEHICULO", query = "select distinct p.persona from Pregunta p where p.vehiculo.id = :id"),
+@NamedQuery(name = "LISTA_PREGUNTAS", query = "select p from Pregunta p where p.vehiculo.id = :id")
+})
 public class Pregunta implements Serializable {
 
 	   
 	@Id
-	@Column(name="id",nullable = false )
+	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name="pregunta", length = 200)
-	private String pregunta;
+	@Column(name="exto", nullable = false)
+	private String texto;
 	
 	@Temporal(TemporalType.TIMESTAMP )
-	private Date fechaPregunta;
+	@Column(name="fecha_publicacion", nullable = false)
+	private Date fechaPublicacion;
 	
 	@ManyToOne()
 	@JoinColumn(name = "id_persona", nullable = false) 
@@ -38,8 +41,11 @@ public class Pregunta implements Serializable {
 	
 	@ManyToOne()
 	@JoinColumn(name = "id_pregunta") 
-	private Pregunta Pregunta;
+	private Pregunta respuesta;
 	
+	@OneToMany(mappedBy = "respuesta")
+	private List<Pregunta> repuestas;
+		
 	
 	private static final long serialVersionUID = 1L;
 
@@ -48,12 +54,19 @@ public class Pregunta implements Serializable {
 	}  
 	
 	
-	public Pregunta(Integer id, String pregunta, Date fechaPregunta) {
+	
+
+
+	public Pregunta(String texto, Date fechaPublicacion, Persona persona, Vehiculo vehiculo) {
 		super();
-		this.id = id;
-		this.pregunta = pregunta;
-		this.fechaPregunta = fechaPregunta;
+		this.texto = texto;
+		this.fechaPublicacion = fechaPublicacion;
+		this.persona = persona;
+		this.vehiculo = vehiculo;
 	}
+
+
+
 
 
 	public Integer getId() {
@@ -64,18 +77,18 @@ public class Pregunta implements Serializable {
 		this.id = id;
 	}   
 	public String getPregunta() {
-		return this.pregunta;
+		return this.texto;
 	}
 
-	public void setPregunta(String pregunta) {
-		this.pregunta = pregunta;
+	public void setPregunta(String texto) {
+		this.texto = texto;
 	}   
-	public Date getFechaPregunta() {
-		return this.fechaPregunta;
+	public Date getFechaPublicacion() {
+		return this.fechaPublicacion;
 	}
 
-	public void setFechaPregunta(Date fechaPregunta) {
-		this.fechaPregunta = fechaPregunta;
+	public void setFechaPregunta(Date fechaPublicacion) {
+		this.fechaPublicacion = fechaPublicacion;
 	}
 
 	
@@ -102,8 +115,28 @@ public class Pregunta implements Serializable {
 
 	
 
-	public void setPregunta(Pregunta pregunta) {
-		Pregunta = pregunta;
+	
+
+	public Pregunta getRespuesta() {
+		return respuesta;
+	}
+
+
+	public void setRespuesta(Pregunta respuesta) {
+		this.respuesta = respuesta;
+	}
+
+
+	
+
+
+	public List<Pregunta> getRepuestas() {
+		return repuestas;
+	}
+
+
+	public void setRepuestas(List<Pregunta> repuestas) {
+		this.repuestas = repuestas;
 	}
 
 
@@ -136,7 +169,7 @@ public class Pregunta implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Pregunta [id=" + id + ", pregunta=" + pregunta + ", fechaPregunta=" + fechaPregunta + "]";
+		return "Pregunta [id=" + id + ", pregunta=" + texto + ", fechaPregunta=" + fechaPublicacion + "]";
 	}
 
       
