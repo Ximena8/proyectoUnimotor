@@ -14,6 +14,7 @@ import co.edu.uniquindio.unimotor.entidades.Caracteristicas;
 import co.edu.uniquindio.unimotor.entidades.Ciudad;
 import co.edu.uniquindio.unimotor.entidades.Favorito;
 import co.edu.uniquindio.unimotor.entidades.FavoritoPK;
+import co.edu.uniquindio.unimotor.entidades.Marca;
 import co.edu.uniquindio.unimotor.entidades.Modelo;
 import co.edu.uniquindio.unimotor.entidades.Persona;
 import co.edu.uniquindio.unimotor.entidades.Pregunta;
@@ -265,6 +266,73 @@ public class UnimotorEJB implements UnimotorEJBRemote {
 		q.setParameter("id",codigoP);
 		return q.getResultList();
 
+	}
+
+	@Override
+	public Marca obtenerMarca(Integer id) throws Exception {
+		Marca m = entityManager.find(Marca.class, id);
+		
+		if(m!=null) {
+			return m;
+		}else {
+			throw new Exception("La marca no exixte");
+		}
+	}
+
+	@Override
+	public List<Marca> obtenerListaMarcas() {
+		TypedQuery<Marca> q = entityManager.createNamedQuery("LISTA_MARCAS", Marca.class); 	
+		return q.getResultList();
+	}
+
+	@Override
+	public List<Marca> obtenerListaMarcas(String nombre, Integer id) {
+		TypedQuery<Marca> q = entityManager.createNamedQuery("LISTA_MARCAS_QUERY", Marca.class); 	
+		q.setParameter("nombre","%"+nombre+"%");
+		return q.getResultList();
+	}
+	
+
+	@Override
+	public boolean buscarNombreMarca(String nombreMarca) {
+		TypedQuery<Marca> q = entityManager.createNamedQuery("MARCA_POR_NOMBRE", Marca.class); 
+		q.setParameter("nombre",nombreMarca);
+		List<Marca> l = q.getResultList();
+		
+		if(l.isEmpty()) {
+			return false;
+		}
+		    return true;
+	}
+
+
+	@Override
+	public void guardarMarca(Marca marca) throws Exception{
+      if(buscarNombreMarca(marca.getNombre())) {
+    	  throw new Exception("El nombre de la marca ya esta registrado");
+      }
+	   entityManager.persist(marca);	
+	}
+
+	@Override
+	public void eliminarMarca(Integer id) throws Exception {
+		Marca marca = entityManager.find(Marca.class, id);
+		if(marca!=null) {
+			entityManager.remove(marca);
+		}else {
+			throw new Exception("La marca no exixte");	
+		}
+		
+	}
+
+	@Override
+	public void actualizarMarca(Marca marca) throws Exception {
+		if(marca!=null) {
+			entityManager.merge(marca);
+		}else {
+			throw new Exception("La marca esta vacia");	
+		}
+		
 	}
 
 

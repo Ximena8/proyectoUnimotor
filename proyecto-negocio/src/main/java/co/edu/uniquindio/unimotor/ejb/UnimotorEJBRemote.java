@@ -6,6 +6,7 @@ import javax.ejb.Remote;
 
 import co.edu.uniquindio.unimotor.entidades.Caracteristicas;
 import co.edu.uniquindio.unimotor.entidades.Ciudad;
+import co.edu.uniquindio.unimotor.entidades.Marca;
 import co.edu.uniquindio.unimotor.entidades.Modelo;
 import co.edu.uniquindio.unimotor.entidades.Persona;
 import co.edu.uniquindio.unimotor.entidades.Pregunta;
@@ -68,12 +69,19 @@ public interface UnimotorEJBRemote {
 	 List<Caracteristicas> obtenerCaracteristicasVehiculo(Integer codigoV);
 	 
 	 List<Vehiculo> obtenerListaVehiculosPersona(Integer codigoP);
+
+	 Marca  obtenerMarca(Integer id) throws Exception;
 	 
+	 List<Marca> obtenerListaMarcas();
 	
+	 List<Marca> obtenerListaMarcas(String nombre, Integer id);
 	 
+	 void guardarMarca(Marca marca) throws Exception;
 	 
+	 void eliminarMarca(Integer id) throws Exception;
 	 
+	 void actualizarMarca(Marca marca) throws Exception;
 	 
-	 
+	 boolean buscarNombreMarca(String nombreMarca);
 	
 }

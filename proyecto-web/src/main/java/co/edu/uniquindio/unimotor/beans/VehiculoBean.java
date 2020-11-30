@@ -10,9 +10,11 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.annotation.ManagedProperty;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.commons.io.FilenameUtils;
@@ -41,6 +43,9 @@ public class VehiculoBean implements Serializable {
 	private List<TipoVehiculo> tiposVehiculos;
 	private List<TipoCombustible> tiposCombustible;
 	private List<Transmision> tiposTransmision;
+	
+	@Inject
+	@ManagedProperty(value="#{seguridadBean.persona}")
 	private Persona persona;
 	private List<Ciudad> ciudades;
 	private List<Modelo> modelos;
@@ -57,7 +62,6 @@ public class VehiculoBean implements Serializable {
 	    ciudades = unimotorEJB.obtenerListaCidades();
 	    caracteristicas = unimotorEJB.obtenerListaCaracteristicas();
 		modelos=unimotorEJB.obtenerListaModelos();
-		persona = unimotorEJB.obtenerPersona(1);
 		tiposVehiculos = unimotorEJB.obtenerListaTiposVehiculos(); 
 		tiposCombustible = unimotorEJB.obtenerListaTiposCombustible();
 		tiposTransmision = unimotorEJB.obtenerListaTransmision();

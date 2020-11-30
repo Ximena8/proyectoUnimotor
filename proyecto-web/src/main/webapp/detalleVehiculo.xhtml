@@ -32,7 +32,7 @@
 
 					<div class="box">
 						<h1>#{detalleVehiculo.vehiculo.nombre.nombrePublicacion}</h1>
-						<h:form>
+						<h:form rendered="#{seguridadBean.autenticado}">
 							<p:toggleSwitch value="#{detalleVehiculo.favorito}">
 								<p:ajax listener="#{detalleVehiculo.marcarComoFavorito}" />
 							</p:toggleSwitch>
@@ -66,7 +66,7 @@
 
 		<br />
 
-		<p:panel header="Hacer una nueva pregunta">
+		<p:panel header="Hacer una nueva pregunta" rendered="#{seguridadBean.autenticado}">
 			<h:form>
 				<h:panelGrid colums="2" cellpadding="3">
 					<p:inputTextarea value="#{detalleVehiculo.pregunta}" required="true"
@@ -79,7 +79,7 @@
 		</p:panel>
 
 		<br />
-		<p:dataList id="lista-c" value="#{detalleVehiculo.vehiculo.pregunta}"
+		<p:dataList id="lista-c" value="#{detalleVehiculo.preguntas}"
 			var="pregunta" emptyMessage="No hay preguntas" type="definition">
 			<f:facet name="header">Preguntas</f:facet>
 			<h:panelGrid columns="1" style="width:100%">

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/WEB-INF/template.xhtml">
+
+	<ui:define name="title">Unimotor - Mis publicaciones</ui:define>
+
+	<ui:define name="content">
+
+		<div class="p-grid p-justify-center">
+
+			<div class="p-col-10">
+
+
+				<h:form>
+					<p:dataView value="#{perfilBean.misVehiculos}" var="vehiculo"
+						listIcon="pi pi-bars">
+						<p:dataViewListItem>
+							<h:panelGrid colums="3" style="width:100%"
+								columnClasses="logo,detail">
+								<p:graphicImage StyleClass="imagen-vehiculo"
+									url="http://localhost:8080/unimotor/#{vehiculo.imagenPrincipal}" />
+
+								<p:outputPanel>
+									<h:panelGrid columns="2" cellpadding="5">
+										<h:outputText value="Nombre publicación:" />
+										<h:outputText value="#{vehiculo.nombrePublicacion}"
+											style="font-weight:bold" />
+
+										<h:outputText value="Precio:" />
+										<h:outputText value="#{vehiculo.precio}"
+											style="font-weight:bold" />
+
+										<h:outputText value="Modelo:" />
+										<h:outputText value="#{vehiculo.modelo.nombre}" />
+
+										<h:outputText value="Marca:" />
+										<h:outputText value="#{vehiculo.modelo.marca.nombre}" />
+									</h:panelGrid>
+								</p:outputPanel>
+
+								<p:commandLink action="detalleVehiculo?faces-redirect=true">
+									<h:outputText styleClass="ui-icon pi pi-search"
+										style="margin:0 auto;" />
+								</p:commandLink>
+							</h:panelGrid>
+						</p:dataViewListItem>
+					</p:dataView>
+				</h:form>
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>
+</html>

@@ -13,7 +13,7 @@
 </h:head>
 
 <h:body>
-
+	
 	<div id="header">
 
 		<div class="p-grid p-justify-center">
@@ -45,7 +45,6 @@
 								<p:inputText placeholder="¿Qué vehículo esta buscabdo?"
 									required="true" value="#{busquedaBean.busqueda}" />
 								<p:commandButton update="@form" icon="pi pi-search"
-								
 									action="#{busquedaBean.buscar}" />
 
 							</div>
@@ -55,11 +54,19 @@
 					</div>
 
 					<div class="p-col-2" align="center">
-
-						<h:form>
-
-							<p:commandButton value="Iniciar sesión" />
-
+						<h:form rendered="#{!seguridadBean.autenticado}">
+							<p:commandButton value="Iniciar Sesión"
+								oncomplete="PF('from-sesion').show()" />
+						</h:form>
+						<h:form rendered="#{seguridadBean.autenticado}">
+							<p:splitButton id="basic" value="#{seguridadBean.persona.nombre}"
+								 icon="pi pi-save">
+								<p:menuitem value="Ir a mi perfil" icon="pi pi-refresh"
+									action="/usuario/miPerfil?faces-redirect=true" />
+								<p:menuitem value="Cerrar sesión" icon="pi pi-times"
+									action="#{seguridadBean.cerrarSesion}" />
+								<p:separator />
+							</p:splitButton>
 						</h:form>
 
 					</div>
@@ -67,6 +74,34 @@
 				</div>
 
 			</div>
+
+			<p:dialog widgetVar="from-sesion" header="Iniciar sesión"
+				modal="true">
+				<h:form>
+
+					<h:panelGrid columns="3">
+
+						<p:outputLabel for="email_login" value="Email:" />
+						<p:inputText id="email_login" value="#{seguridadBean.emailLogin}"
+							required="true" />
+						<p:message for="email_login" />
+
+						<p:outputLabel for="password_login" value="Password:" />
+						<p:password id="password_login"
+							value="#{seguridadBean.passwordLogin}" required="true" />
+						<p:message for="password_login" />
+
+					</h:panelGrid>
+					<br />
+					<p:commandButton value="Iniciar sesión"
+						action="#{seguridadBean.autenticarUsuario}" update="@form" />
+					<p:commandButton value="Recuperar contraseña"
+						action="#{seguridadBean.enviarCorreo}" update="@form" />
+					<p:growl for="mensaje_sesion" showDetail="true" />
+
+				</h:form>
+
+			</p:dialog>
 
 		</div>
 
@@ -77,18 +112,23 @@
 
 				<p:menubar class="mi-menu">
 
-					<p:menuitem action="registrarPersona?faces-redirect=true"
+					<p:menuitem rendered="#{!seguridadBean.autenticado}"
+						action="/registrarPersona?faces-redirect=true"
 						value="Resgitrar Persona" icon="pi pi-user" />
 
-					<p:menuitem action="registrarVehiculo?faces-redirect=true"
+					<p:menuitem rendered="#{seguridadBean.autenticado}"
+						action="/usuario/registrarVehiculo?faces-redirect=true"
 						value="Registrar nuevo vehículo" icon="pi pi-cloud-upload" />
 
-					<p:menuitem action="misPublicaciones?faces-redirect=true"
+					<p:menuitem rendered="#{seguridadBean.autenticado}"
+						action="/usuario/misPublicaciones?faces-redirect=true"
 						value="Mis publicaciones" icon="pi pi-pencil" />
 
-					<p:menuitem action="perfil?faces-redirect=true" value="Mi perfil" icon="pi pi-users"/>
-					
+					<p:menuitem rendered="#{seguridadBean.autenticado}"
+						value="Preguntas pendientes" />
 
+					<p:menuitem rendered="#{seguridadBean.autenticado}"
+						value="Mis favoritos" />
 				</p:menubar>
 
 			</h:form>

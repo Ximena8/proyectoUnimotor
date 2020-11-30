@@ -38,6 +38,8 @@ public class DetalleVehiculo implements Serializable {
 	private List<Pregunta> preguntas;
 	private List<Caracteristicas> Caracteristica;
 	
+	@Inject
+	@ManagedProperty(value="#{seguridadBean.persona}")
 	private Persona persona;
 	
 	@PostConstruct
@@ -67,6 +69,7 @@ public class DetalleVehiculo implements Serializable {
 		if(p!=null) {
 			preguntas.add(p);	
 		     }
+		pregunta="";
 		}catch (Exception e) {
 			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Alerta", e.getMessage());
 			FacesContext.getCurrentInstance().addMessage("msj-pregunta", m);
