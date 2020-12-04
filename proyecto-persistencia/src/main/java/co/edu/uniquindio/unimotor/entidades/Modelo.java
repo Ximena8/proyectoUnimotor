@@ -5,6 +5,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 /**
@@ -33,6 +34,7 @@ public class Modelo implements Serializable {
 	@JoinColumn(name = "id_marca", nullable = false)
 	private Marca marca;
 	
+	@JsonbTransient
 	@OneToMany(mappedBy = "modelo")
 	private List<Vehiculo> vehiculo;
 	
@@ -66,16 +68,6 @@ public class Modelo implements Serializable {
 
 	public void setMarca(Marca marca) {
 		this.marca = marca;
-	}
-
-
-	public List<Vehiculo> getVehiculo() {
-		return vehiculo;
-	}
-
-
-	public void setVehiculo(List<Vehiculo> vehiculo) {
-		this.vehiculo = vehiculo;
 	}
 
 	public String getModeloMarca() {

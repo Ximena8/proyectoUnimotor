@@ -12,6 +12,32 @@
 
 	<ui:define name="content">
 
+		<div id="fb-root"></div>
+		<script async="true" defer="true" crossorigin="anonymous"
+			src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&amp;version=v9.0&amp;appId=209635684062148&amp;autoLogAppEvents=1"
+			nonce="qk9FlrJM"></script>
+
+		<script>
+			window.twttr = (function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr
+						|| {};
+				if (d.getElementById(id))
+					return t;
+				js = d.createElement(s);
+				js.id = id;
+				js.src = "https://platform.twitter.com/widgets.js";
+				fjs.parentNode.insertBefore(js, fjs);
+
+				t._e = [];
+				t.ready = function(f) {
+					t._e.push(f);
+				};
+
+				return t;
+			}(document, "script", "twitter-wjs"));
+		</script>
+		<div id="twitter-wjs"></div>
+
 		<div class="p-grid nested-grid">
 
 			<div class="p-col-7">
@@ -31,7 +57,7 @@
 				<div class="p-grid">
 
 					<div class="box">
-						<h1>#{detalleVehiculo.vehiculo.nombre.nombrePublicacion}</h1>
+						<h1>#{detalleVehiculo.vehiculo.nombrePublicacion}</h1>
 						<h:form rendered="#{seguridadBean.autenticado}">
 							<p:toggleSwitch value="#{detalleVehiculo.favorito}">
 								<p:ajax listener="#{detalleVehiculo.marcarComoFavorito}" />
@@ -44,6 +70,12 @@
 						<h3>Ciudad: #{detalleVehiculo.vehiculo.ciudad.nombre}</h3>
 						<h3>Kilómetros recorridos:
 							#{detalleVehiculo.vehiculo.kilometraje}</h3>
+
+						<div class="fb-share-button"
+							data-href="https://www.uniquindi.edu.co/"
+							data-layout="button_count" data-size="large"></div>
+						<br /> <br /> <a class="twitter-share-button"
+							href="https://twitter.com/intent/tweet"> Tweet</a>
 					</div>
 
 					<p:dataList
@@ -66,12 +98,13 @@
 
 		<br />
 
-		<p:panel header="Hacer una nueva pregunta" rendered="#{seguridadBean.autenticado}">
+		<p:panel header="Hacer una nueva pregunta"
+			rendered="#{seguridadBean.autenticado}">
 			<h:form>
 				<h:panelGrid colums="2" cellpadding="3">
-					<p:inputTextarea value="#{detalleVehiculo.pregunta}" required="true"
-						style="width:450px;height:300px" />
-					<p:commandButton value="Guradar preguntar"
+					<p:inputTextarea value="#{detalleVehiculo.pregunta}"
+						required="true" style="width:450px;height:300px" />
+					<p:commandButton value=" Preguntar"
 						action="#{detalleVehiculo.hacerPregunta}" update="@form, lista-c" />
 				</h:panelGrid>
 				<p:growl for="msj-pregunta" showDetail="true" />
@@ -88,7 +121,7 @@
 						<h:outputText value="#{pregunta.persona.nombre}:"
 							style="font-weight: bold" />
 						<h:outputText value="#{pregunta.texto}" />
-						<h:outputText value="#{pregunta.fechaPublicacion}" />
+
 					</h:panelGrid>
 				</p:outputPanel>
 			</h:panelGrid>

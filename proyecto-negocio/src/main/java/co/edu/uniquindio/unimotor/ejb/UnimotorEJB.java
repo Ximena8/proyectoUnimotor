@@ -172,11 +172,6 @@ public class UnimotorEJB implements UnimotorEJBRemote {
 		return Arrays.asList(Transmision.values() );
 	}
 
-	@Override
-	public Persona obtenerPersona(Integer id) {
-
-		return entityManager.find(Persona.class, id);
-	}
 
 	@Override
 	public Modelo obtenerModelo(Integer id) {
@@ -188,59 +183,64 @@ public class UnimotorEJB implements UnimotorEJBRemote {
 	public List<Vehiculo> buscarVehiculos(String busqueda) {
 		TypedQuery<Vehiculo> q = entityManager.createNamedQuery("BUSCAR_VEHICULOS", Vehiculo.class); 	
 		q.setParameter("busqueda", "%"+busqueda+"%");
-		
+
 		return q.getResultList();
 	}
 
 	@Override
 	public Caracteristicas obtenerCaracteristica(Integer id) {
 		return entityManager.find(Caracteristicas.class, id);
-		
+
 	}
 
 	@Override
-	public Vehiculo obtenerVediculo(Integer id) {
-		
-		return entityManager.find(Vehiculo.class, id);
+	public Vehiculo obtenerVediculo(Integer id) throws Exception {
+
+		Vehiculo v = entityManager.find(Vehiculo.class, id);
+		if(v==null) {
+			throw new Exception("El id del vehiculo no exixte");
+		}
+
+		return v;
 	}
 
 	@Override
 	public void guardarFavorito(Persona persona, Vehiculo vehiculo) {
 		Persona p = entityManager.find(Persona.class, persona.getId());
 		Vehiculo v = entityManager.find(Vehiculo.class, vehiculo.getId());
-		
-	if(p!=null && v!=null) {
-		entityManager.persist(new Favorito(p,v,new Date()) );
-			
+
+		if(p!=null && v!=null) {
+			entityManager.persist(new Favorito(p,v,new Date()) );
+
 		}
-		
+
 	}
 
 	@Override
 	public void eliminarFavorito(Persona persona, Vehiculo vehiculo) {
 		Persona p = entityManager.find(Persona.class, persona.getId());		
 		Vehiculo v = entityManager.find(Vehiculo.class, vehiculo.getId());
-	
-	if(p!=null && v!=null) {
-		FavoritoPK llave = new FavoritoPK(p.getId(),v.getId());
-		Favorito fav = entityManager.find(Favorito.class,llave);
-		entityManager.remove(fav);
-	}
-		
+
+		if(p!=null && v!=null) {
+			FavoritoPK llave = new FavoritoPK(p.getId(),v.getId());
+			Favorito fav = entityManager.find(Favorito.class,llave);
+			entityManager.remove(fav);
+		}
+
 	}
 
 	@Override
 	public Pregunta hacerPregunta(Persona persona, Vehiculo vehiculo, String textoPregunta) throws Exception {
-		
+
 		try {
-	Pregunta pregunta = null;
-	if(persona!=null && vehiculo!=null) {
-		pregunta = new Pregunta(textoPregunta, new Date(), persona,vehiculo);
-		entityManager.persist(pregunta);
-		}else {
-			throw new Exception("Es necesario definir una pregunta y un vehiculo para registrar la pregunta");
-		}
-		return pregunta;
+			Pregunta pregunta = null;
+			if(persona!=null && vehiculo!=null) {
+				pregunta = new Pregunta(textoPregunta, new Date(), persona,vehiculo);
+				entityManager.persist(pregunta);
+			}else {
+				throw new Exception("Es necesario definir una pregunta y un vehiculo para registrar la pregunta");
+			}
+			return pregunta;
 		}catch (Exception e) {
 			throw new Exception("Hubo un error al momento de registrar la pregunta");
 		}
@@ -271,7 +271,7 @@ public class UnimotorEJB implements UnimotorEJBRemote {
 	@Override
 	public Marca obtenerMarca(Integer id) throws Exception {
 		Marca m = entityManager.find(Marca.class, id);
-		
+
 		if(m!=null) {
 			return m;
 		}else {
@@ -291,27 +291,27 @@ public class UnimotorEJB implements UnimotorEJBRemote {
 		q.setParameter("nombre","%"+nombre+"%");
 		return q.getResultList();
 	}
-	
+
 
 	@Override
 	public boolean buscarNombreMarca(String nombreMarca) {
 		TypedQuery<Marca> q = entityManager.createNamedQuery("MARCA_POR_NOMBRE", Marca.class); 
 		q.setParameter("nombre",nombreMarca);
 		List<Marca> l = q.getResultList();
-		
+
 		if(l.isEmpty()) {
 			return false;
 		}
-		    return true;
+		return true;
 	}
 
 
 	@Override
 	public void guardarMarca(Marca marca) throws Exception{
-      if(buscarNombreMarca(marca.getNombre())) {
-    	  throw new Exception("El nombre de la marca ya esta registrado");
-      }
-	   entityManager.persist(marca);	
+		if(buscarNombreMarca(marca.getNombre())) {
+			throw new Exception("El nombre de la marca ya esta registrado");
+		}
+		entityManager.persist(marca);	
 	}
 
 	@Override
@@ -322,7 +322,7 @@ public class UnimotorEJB implements UnimotorEJBRemote {
 		}else {
 			throw new Exception("La marca no exixte");	
 		}
-		
+
 	}
 
 	@Override
@@ -332,7 +332,122 @@ public class UnimotorEJB implements UnimotorEJBRemote {
 		}else {
 			throw new Exception("La marca esta vacia");	
 		}
-		
+
+	}
+
+
+
+	@Override
+	public void guardarVehiculo(Vehiculo vehiculo) throws Exception {
+		if(buscarNombreVehiculo(vehiculo.getNombrePublicacion())) {
+			throw new Exception("El nombre del vehiculo ya esta registrado");
+		}
+		entityManager.persist(vehiculo);	
+
+	}
+
+	@Override
+	public void eliminarVehiculo(Integer id) throws Exception {
+		Vehiculo vehiculo = entityManager.find(Vehiculo.class, id);
+		if(vehiculo!=null) {
+			entityManager.remove(vehiculo);
+		}else {
+			throw new Exception("El vehiculo no exixte");	
+		}
+
+
+	}
+
+	@Override
+	public void actualizarVehiculo(Vehiculo vehiculo) throws Exception {
+		if(vehiculo!=null) {
+			entityManager.merge(vehiculo);
+		}else {
+			throw new Exception("El  vehiculo esta vacio");	
+		}
+
+	}
+
+	@Override
+	public boolean buscarNombreVehiculo(String nombreVehiculo) {
+		TypedQuery<Vehiculo> q = entityManager.createNamedQuery("VEHICULO_POR_NOMBRE", Vehiculo.class); 
+		q.setParameter("nombre",nombreVehiculo);
+		List<Vehiculo> l = q.getResultList();
+
+		if(l.isEmpty()) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public List<Persona> obtenerListaPersonas() {
+		TypedQuery<Persona> q = entityManager.createNamedQuery("LISTA_PERSONAS", Persona.class); 	
+		return q.getResultList();
+	}
+
+	@Override
+	public List<Persona> obtenerListaPersonas(String nombre, Integer id) {
+		TypedQuery<Persona> q = entityManager.createNamedQuery("LISTA_PERSONAS_QUERY", Persona.class); 	
+		q.setParameter("nombre","%"+nombre+"%");
+		return q.getResultList();
+	}
+
+	@Override
+	public boolean buscarNombrePersona(String nombrePersona) {
+		TypedQuery<Persona> q = entityManager.createNamedQuery("PERSONA_POR_NOMBRE", Persona.class); 
+		q.setParameter("nombre",nombrePersona);
+		List<Persona> l = q.getResultList();
+
+		if(l.isEmpty()) {
+			return false;
+		}
+		return true;
+	}
+
+
+	@Override
+	public Persona obtenerPersona(Integer id) throws Exception {
+
+		Persona p = entityManager.find(Persona.class, id);
+
+		if(p!=null) {
+			return p;
+		}else {
+			throw new Exception("La persona no exixte");
+		}
+	}
+
+	@Override
+	public void guardarPersona(Persona persona) throws Exception {
+		if(buscarNombrePersona(persona.getNombre())) {
+			throw new Exception("La persona ya esta registrado");
+		}
+		entityManager.persist(persona);	
+
+	}
+
+
+
+	@Override
+	public void eliminarPersona(Integer id) throws Exception {
+		Persona persona = entityManager.find(Persona.class, id);
+		if(persona!=null) {
+			entityManager.remove(persona);
+		}else {
+			throw new Exception("La persona no exixte");	
+		}
+
+	}
+
+	@Override
+	public void actualizarPersona(Persona persona) throws Exception {
+		if(persona!=null) {
+			entityManager.merge(persona);
+		}else {
+			throw new Exception("La persona esta vacia");	
+		}
+
 	}
 
 

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.String;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 /**
@@ -29,6 +30,7 @@ public class Marca implements Serializable {
 	@Column(name="nombre", length = 200, nullable = false)
 	private String nombre;
 	
+	@JsonbTransient
 	@OneToMany(mappedBy = "marca")
 	private List<Modelo> modelo;
 	

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.String;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -15,6 +16,9 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @NamedQueries({
+	@NamedQuery(name = "LISTA_PERSONAS", query = "select p from Persona p"),
+	@NamedQuery(name = "MARCA_PERSONAS_QUERY", query = "select P from Persona p where p.nombre  like :nombre"),
+	@NamedQuery(name = "PERSONA_POR_NOMBRE", query = "select p from Persona p where p.nombre = :nombre"),
 	@NamedQuery(name = "AUTENTICAR_PERSONA", query = "select p from Persona p where p.email = :email and p.clave = :clave"),
 	@NamedQuery(name = "LISTA_FAVORITOS_PERSONA", query = "select f.vehiculo from Persona p, IN (p.favorito) f where p.email = :email"),
 	@NamedQuery(name = "LISTA_FAVORITOS_PERSONA2", query = "select f.vehiculo, p.nombre from Persona p, IN (p.favorito) f where p.email = :email"),
@@ -68,12 +72,15 @@ public class Persona implements Serializable {
 	@JoinColumn(name = "id_ciudad", nullable = false)
 	private Ciudad ciudad;
 	
+	@JsonbTransient
 	@OneToMany(mappedBy = "persona")
 	private List<Favorito> favorito;
 	
+	@JsonbTransient
 	@OneToMany(mappedBy = "persona")
 	private List<Pregunta> Pregunta;
 	
+	@JsonbTransient
 	@OneToMany(mappedBy = "persona")
 	private List<Vehiculo> vehiculo;
 	

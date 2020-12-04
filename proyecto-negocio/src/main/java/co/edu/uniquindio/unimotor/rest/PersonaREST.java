@@ -13,10 +13,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import co.edu.uniquindio.unimotor.ejb.UnimotorEJB;
-import co.edu.uniquindio.unimotor.entidades.Vehiculo;
+import co.edu.uniquindio.unimotor.entidades.Persona;
 
-@Path("/vehiculos")
-public class VehiculoREST {
+@Path("/usuarios")
+public class PersonaREST {
 	
 	@EJB
 	private UnimotorEJB unimotorEJB;
@@ -24,32 +24,30 @@ public class VehiculoREST {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/")
-	public Response obtenerVehiculos(){
-		return Response.status(200).entity(unimotorEJB.obtenerListaVehiculos()).build();
+	public Response obtenerPersonas(){
+		return Response.status(200).entity(unimotorEJB.obtenerListaPersonas()).build();
 
 	}
-	
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{id}")
-	public Response obtenerVehiculo( @PathParam("id") Integer id) {
+	public Response obtenerPersona( @PathParam("id") Integer id) {
 		try {
-			Vehiculo vehiculo =  unimotorEJB.obtenerVediculo(id);
-			return Response.status(200).entity(vehiculo).build();
+			Persona persona =  unimotorEJB. obtenerPersona(id);
+			return Response.status(200).entity(persona).build();
 		} catch (Exception e) {
 			return Response.status(500).entity("{ \"mensaje\" :	\""+e.getMessage()+"\" }").type(MediaType.APPLICATION_JSON).build();
 		}
 	}
-	
-	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/")
-	public Response registrarVehiculo(Vehiculo vehiculo) {
+	public Response registrarPersona(Persona persona) {
 		try {
-			unimotorEJB.guardarVehiculo(vehiculo);
-			return Response.status(200).entity("{ \"mensaje\" : \"El vehiculo se registró correctamente\" }").type(MediaType.APPLICATION_JSON).build();
+			unimotorEJB.guardarPersona(persona);
+			return Response.status(200).entity("{ \"mensaje\" : \"La persona se registró correctamente\" }").type(MediaType.APPLICATION_JSON).build();
 		} catch (Exception e) {
 			return Response.status(500).entity("{ \"mensaje\" :	\""+e.getMessage()+"\" }").type(MediaType.APPLICATION_JSON).build();
 		}
@@ -60,10 +58,10 @@ public class VehiculoREST {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/")
-	public Response acutalizarVehiculo(Vehiculo vehiculo) {
+	public Response acutalizarPersona(Persona persona) {
 		try {
-			unimotorEJB.actualizarVehiculo(vehiculo);
-			return Response.status(200).entity("{ \"mensaje\" : \"El vehículo se actualizó correctamente\" }").type(MediaType.APPLICATION_JSON).build();
+			unimotorEJB.actualizarPersona(persona);
+			return Response.status(200).entity("{ \"mensaje\" : \"La persona se actualizó correctamente\" }").type(MediaType.APPLICATION_JSON).build();
 		} catch (Exception e) {
 			return Response.status(500).entity("{ \"mensaje\" :	\""+e.getMessage()+"\" }").type(MediaType.APPLICATION_JSON).build();
 		}
@@ -73,10 +71,10 @@ public class VehiculoREST {
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{id}")
-	public Response eliminarVehiculo(@PathParam("id") Integer idVehiculo) {
+	public Response eliminarPersona(@PathParam("id") Integer idPersona) {
 		try {
-			unimotorEJB.eliminarVehiculo( idVehiculo);
-			return Response.status(200).entity("{ \"mensaje\" : \"El vehiculo se eliminó correctamente\" }").type(MediaType.APPLICATION_JSON).build();
+			unimotorEJB.eliminarPersona( idPersona);
+			return Response.status(200).entity("{ \"mensaje\" : \"La persona se eliminó correctamente\" }").type(MediaType.APPLICATION_JSON).build();
 		} catch (Exception e) {
 			return Response.status(500).entity("{ \"mensaje\" :	\""+e.getMessage()+"\" }").type(MediaType.APPLICATION_JSON).build();
 		}

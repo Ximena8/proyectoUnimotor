@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.String;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 /**
@@ -26,9 +27,11 @@ public class Ciudad implements Serializable {
 	@Column(name="nombre", length = 200, nullable = false)
 	private String nombre;
 	
+	@JsonbTransient
 	@OneToMany(mappedBy = "ciudad")
 	private List<Persona> persona;
 	
+	@JsonbTransient
 	@OneToMany(mappedBy = "ciudad")
 	private List<Vehiculo> Vehiculo;
 	
@@ -60,8 +63,6 @@ public class Ciudad implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-	
 	
 
 	public List<Persona> getPersona() {
@@ -72,17 +73,6 @@ public class Ciudad implements Serializable {
 	public void setPersona(List<Persona> persona) {
 		this.persona = persona;
 	}
-
-
-	public List<Vehiculo> getVehiculo() {
-		return Vehiculo;
-	}
-
-
-	public void setVehiculo(List<Vehiculo> vehiculo) {
-		Vehiculo = vehiculo;
-	}
-
 
 	@Override
 	public int hashCode() {
@@ -115,6 +105,9 @@ public class Ciudad implements Serializable {
 	public String toString() {
 		return "Ciudad [id=" + id + ", nombre=" + nombre + "]";
 	}
+
+
+	
 
 	
 	

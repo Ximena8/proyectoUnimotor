@@ -15,6 +15,7 @@ public Set<Class<?>> getClasses() {
 	   HashSet<Class<?> > h = new HashSet<Class<?>>();
 	   h.add(MarcaREST.class);
 	   h.add(VehiculoREST.class);
+	   h.add(PersonaREST.class);
 	return h;
 }
 

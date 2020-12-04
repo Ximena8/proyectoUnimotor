@@ -17,8 +17,8 @@ public class InicioBean implements Serializable{
     
 	@EJB
 	private UnimotorEJB unimotorEJB;
-	private List<Vehiculo> vehiculos;
 	private static final long serialVersionUID = 1L;
+	private List<Vehiculo> vehiculos; 
 	
 	@PostConstruct
 	public void inicializar() {

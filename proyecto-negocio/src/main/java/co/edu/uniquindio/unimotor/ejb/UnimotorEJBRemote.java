@@ -18,70 +18,95 @@ import co.edu.uniquindio.unimotor.excepcion.VehiculoInexistenteException;
 
 @Remote
 public interface UnimotorEJBRemote {
-	
-	
+
+
 	void registrarPersona(Persona persona) throws Exception;
-	
+
 	Persona iniciarSesion(String email, String clave) throws Exception;
-	
+
 	void registrarVehiculo(Vehiculo vehiculo) throws Exception;
-	
+
 	List<Vehiculo> obtenerListaVehiculos();
 
 	void modificarVehiculo(Vehiculo vehiculo) throws VehiculoInexistenteException;
-	
-	void eliminarVehiculo(Vehiculo vehiculo) throws VehiculoInexistenteException;
-	
-	List<Caracteristicas> obtenerListaCaracteristicas();
-	
-	List<Ciudad> obtenerListaCidades();
-	
-	List<Modelo> obtenerListaModelos();
-	
-	void enviarEmail(String asunto, String mensaje, String destinatario)throws Exception;
-	
-	Ciudad obtenerCiudad(Integer id);
-	
-	List<TipoVehiculo>  obtenerListaTiposVehiculos();
-	
-	List<TipoCombustible> obtenerListaTiposCombustible();
-	
-	List<Transmision> obtenerListaTransmision();
-	
-	Persona obtenerPersona(Integer id);
-	
-	Modelo obtenerModelo(Integer id);
-	
-	List<Vehiculo> buscarVehiculos(String busqueda);
-	
-	Caracteristicas obtenerCaracteristica(Integer id);
-	
-	 Vehiculo obtenerVediculo(Integer id);
-	 
-	 void guardarFavorito(Persona persona, Vehiculo vehiculo);
-	 
-	 void eliminarFavorito(Persona persona, Vehiculo vehiculo);
-	 
-	 Pregunta hacerPregunta(Persona persona, Vehiculo vehiculo,String textoPregunta) throws Exception;
-	 
-	 List<Pregunta> obtenerPreguntasVehiculo(Integer codigoV);
-	 
-	 List<Caracteristicas> obtenerCaracteristicasVehiculo(Integer codigoV);
-	 
-	 List<Vehiculo> obtenerListaVehiculosPersona(Integer codigoP);
 
-	 Marca  obtenerMarca(Integer id) throws Exception;
-	 
-	 List<Marca> obtenerListaMarcas();
+	void eliminarVehiculo(Vehiculo vehiculo) throws VehiculoInexistenteException;
+
+	List<Caracteristicas> obtenerListaCaracteristicas();
+
+	List<Ciudad> obtenerListaCidades();
+
+	List<Modelo> obtenerListaModelos();
+
+	void enviarEmail(String asunto, String mensaje, String destinatario)throws Exception;
+
+	Ciudad obtenerCiudad(Integer id);
+
+	List<TipoVehiculo>  obtenerListaTiposVehiculos();
+
+	List<TipoCombustible> obtenerListaTiposCombustible();
+
+	List<Transmision> obtenerListaTransmision();
+
+	Persona obtenerPersona(Integer id) throws Exception;
+
+	Modelo obtenerModelo(Integer id);
+
+	List<Vehiculo> buscarVehiculos(String busqueda);
+
+	Caracteristicas obtenerCaracteristica(Integer id);
+
+	Vehiculo obtenerVediculo(Integer id) throws Exception;
+
+	void guardarFavorito(Persona persona, Vehiculo vehiculo);
+
+	void eliminarFavorito(Persona persona, Vehiculo vehiculo);
+
+	Pregunta hacerPregunta(Persona persona, Vehiculo vehiculo,String textoPregunta) throws Exception;
+
+	List<Pregunta> obtenerPreguntasVehiculo(Integer codigoV);
+
+	List<Caracteristicas> obtenerCaracteristicasVehiculo(Integer codigoV);
+
+	List<Vehiculo> obtenerListaVehiculosPersona(Integer codigoP);
+
+	Marca  obtenerMarca(Integer id) throws Exception;
+
+	List<Marca> obtenerListaMarcas();
+
+	List<Marca> obtenerListaMarcas(String nombre, Integer id);
+
+	void guardarMarca(Marca marca) throws Exception;
+
+	void eliminarMarca(Integer id) throws Exception;
+
+	void actualizarMarca(Marca marca) throws Exception;
+
+	boolean buscarNombreMarca(String nombreMarca);
+
+	void guardarVehiculo(Vehiculo vehiculo) throws Exception;
+
+	void eliminarVehiculo(Integer id) throws Exception;
+
+	void actualizarVehiculo(Vehiculo vehiculo) throws Exception;
 	
-	 List<Marca> obtenerListaMarcas(String nombre, Integer id);
-	 
-	 void guardarMarca(Marca marca) throws Exception;
-	 
-	 void eliminarMarca(Integer id) throws Exception;
-	 
-	 void actualizarMarca(Marca marca) throws Exception;
-	 
-	 boolean buscarNombreMarca(String nombreMarca);
+	boolean buscarNombreVehiculo(String nombreVehiculo);
 	
+	List<Persona> obtenerListaPersonas();
+	
+	List<Persona> obtenerListaPersonas(String nombre, Integer id);
+	
+	boolean buscarNombrePersona(String nombrePersona);
+	
+	void guardarPersona(Persona persona) throws Exception;
+
+	void eliminarPersona(Integer id) throws Exception;
+
+	void actualizarPersona(Persona persona) throws Exception;
+	
+	
+	
+	
+	
+
 }

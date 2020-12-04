@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -20,6 +21,7 @@ import javax.validation.constraints.Positive;
 //consultas
 @Entity
 @NamedQueries({
+	@NamedQuery(name = "VEHICULO_POR_NOMBRE", query = "select v from Vehiculo v where v.nombrePublicacion = :nombre"),
 	@NamedQuery(name = "LISTA_VEHICULOS", query = "select v from Vehiculo v"),
 	@NamedQuery(name = "BUSCAR_VEHICULOS_PLACA", query = "select v from Vehiculo v where v.placa = :placa"),
 	@NamedQuery(name = "BUSCAR_VEHICULOS_PERSONA", query = "select v from Vehiculo v where v.persona.id = :id"),
@@ -29,7 +31,7 @@ import javax.validation.constraints.Positive;
 	@NamedQuery(name = "TODOS_VEHICULOS_PRECIO", query = "select v from Vehiculo v where v.precio between :precioMenor and :precioMayor " ),
 	@NamedQuery(name = "VEHICULO_DESCRIPCION", query = "select v.modelo.nombre, v.precio,  v.anio from  Vehiculo v where v.descripcion = :descrip"),
 	@NamedQuery(name = "LISTA_PREGUNTAS_VEHICULO", query = "select v,p from Vehiculo v left join v.pregunta p "),
-	@NamedQuery(name = "LISTA_CARACTERISTICAS_VEHICULO", query = "select C from Vehiculo v join v.caracteristicas c where v.id =:id "),
+	@NamedQuery(name = "LISTA_CARACTERISTICAS_VEHICULO", query = "select c from Vehiculo v join v.caracteristicas c where v.id =:id "),
 	@NamedQuery(name = "LISTA_FOTOS_VEHICULO", query = "select v from Vehiculo v  where v.modelo.marca.nombre = :marca and v.vehiculoNuevo = true and v.precio between :precioMin  and :precioMax "),
 	@NamedQuery(name = "LISTA_VEHICULOS_CARACTERISTICAS", query = "select distinct v from Vehiculo v join v.caracteristicas c where c.nombre IN :lista" ),
 	@NamedQuery(name = "LISTA_VEHICULOS_CARACTERISTICAS_CUENTA", query = "select count(v) from Vehiculo v join v.caracteristicas c where c.id IN :lista group by v  " ),
@@ -95,7 +97,7 @@ public class Vehiculo implements Serializable {
 	private Integer numeroPuertas;
 	
 	@NotNull
-	@Column(name="vehiculo_nuevo",nullable = false) //los names de los atributos no pueden tener espacios en blanco
+	@Column(name="vehiculo_nuevo",nullable = false) 
 	private boolean vehiculoNuevo;
 
 	
@@ -114,27 +116,25 @@ public class Vehiculo implements Serializable {
 	@ManyToMany
 	private List<Caracteristicas> caracteristicas;
 	
+	@JsonbTransient
 	@OneToMany(mappedBy = "vehiculo")
 	private List<Favorito> favorito;
 
+	@JsonbTransient
 	@OneToMany(mappedBy = "vehiculo")
 	private List<Pregunta> pregunta;
 
-
-	@ManyToOne()
+	@ManyToOne
 	@JoinColumn(name = "id_ciudad", nullable = false)
 	private Ciudad ciudad;
 
-	@ManyToOne()
+	@ManyToOne
 	@JoinColumn(name = "id_persona", nullable = false)
 	private Persona persona;
 
-	
-	
-	@ManyToOne()
+	@ManyToOne
 	@JoinColumn(name = "id_modelo", nullable = false)
 	private Modelo modelo;
-
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name="tipo_combustible",nullable = false)
@@ -357,18 +357,6 @@ public class Vehiculo implements Serializable {
 		this.placa = placa;
 	}
 
-
-	public List<Favorito> getFavorito() {
-		return favorito;
-	}
-
-
-	public void setFavorito(List<Favorito> favorito) {
-		this.favorito = favorito;
-	}
-
-	
-
 	public List<Caracteristicas> getCaracteristicas() {
 		return caracteristicas;
 	}
@@ -437,9 +425,15 @@ public class Vehiculo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Vehiculo [id=" + id + ", precio=" + precio + ", descripcion=" + descripcion + ", anio=" + anio
-				+ ", vehiculoNuevo=" + vehiculoNuevo + "]";
+		return "Vehiculo [id=" + id + ", anio=" + anio + ", cilindrada=" + cilindrada + ", color=" + color
+				+ ", descripcion=" + descripcion + ", fechaPublicacion=" + fechaPublicacion + ", kilometraje="
+				+ kilometraje + ", nombrePublicacion=" + nombrePublicacion + ", numeroPuertas=" + numeroPuertas
+				+ ", vehiculoNuevo=" + vehiculoNuevo + ", placa=" + placa + ", precio=" + precio + ", fotos=" + fotos
+				+ ", caracteristicas=" + caracteristicas + ", ciudad=" + ciudad + ", persona=" + persona + ", modelo="
+				+ modelo + ", tipoCombustible=" + tipoCombustible + ", tipoVehiculo=" + tipoVehiculo + ", transmision="
+				+ transmision + "]";
 	}
+
 
 
 	
